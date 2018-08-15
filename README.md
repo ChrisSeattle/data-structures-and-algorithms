@@ -6,8 +6,8 @@ Follows a standard GitHub workflow for cloning and requiring implementations usi
 
 git clone https://github.com/ChrisSeattle/data-structures-and-algorithms.git
 
-pytest
-
+pipenv shell
+pipenv install pytest
 
 ## Table of Contents
 1. Data Structures
