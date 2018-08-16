@@ -7,4 +7,5 @@
 - [x] Prepare Checklist to use with assignment completion
 - [x] Write at least 3 test assertions
 - [x] Ensure code is passing all tests
-- [x] Update Readme file with accurate info.
+- [x] Update challenge Readme file with accurate info.
+- [x] Update main repo Readme file with accurate info.

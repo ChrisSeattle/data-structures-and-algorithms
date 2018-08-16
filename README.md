@@ -14,4 +14,4 @@ pipenv install pytest
     - [List](./data_structures/list)
 2. Algorithms
     - [array_shift](./challenges/array_shift)
-    - [array_binary_shift](.challenges/array_binary_search)
+    - [array_binary_shift](./challenges/array_binary_search)
