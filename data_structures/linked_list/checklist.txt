@@ -12,7 +12,7 @@
 - [x] This class should be aware of a default None value assigned to head when the list is created.
 - [?] This class should be aware of the len of the list, which represents the count of Nodes in the list at any time
 - [ ] This class should have the ability to accept an iterable as an argument when instantiated, such as [1, 2, 3, 4], and creates a new Node in the list for each value in the iterable.
-- [ ] Define any further magic methods such as len and str to support user functionality and informative responses.
+- [x] Define any further magic methods such as len and str to support user functionality and informative responses.
 - [x] Define a method called insert which takes any value as an argument and adds that value to the head of the list with an O(1) Time performance.
 - [x] Define a method called find which takes any value as an argument and returns True or False depending on whether that value exists as a Node value within the list.
 - [ ] At no time should an exception or stack trace be show to the end user. Catch and handle any such exceptions and return a printed value or operation which cleanly represents the state and either Stops execution cleanly or provides the user with clear direction and output.
