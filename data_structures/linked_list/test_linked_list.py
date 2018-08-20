@@ -65,39 +65,37 @@ def test_linked_list_insert_exists():
     assert LinkedList.insert
 
 
-def test_linked_list_insertion_on_single_val_successful():
+def test_linked_list_insertion_on_single_val_successful(empty_list):
     """ Can we insert a single value and see the value in the head position
         and see the length of LinkedList increase
     """
-    ll = LinkedList([])
-    ll.insert(42)
-    assert ll.head.val == 42
-    assert len(ll) == 1
+    empty_list.insert(42)
+    assert empty_list.head.val == 42
+    assert len(empty_list) == 1
 
 
 def test_length_of_list_increases_after_few_single_val_insertion(small_list):
     """ After a few single value insertions, is the most recent value stored in
         the head node and does the length of the list increase accordingly
     """
-    ll = LinkedList([])
-    ll.insert(42)
-    ll.insert(13)
-    assert ll.head.val == 13
-    assert len(ll) == 2
+    # ll = LinkedList([])
+    # ll.insert(42)
+    # ll.insert(13)
+    # assert ll.head.val == 13
+    # assert len(ll) == 2
     assert len(small_list) == 4
+    assert small_list.head.val == 4
 
-
-def test_insertion_for_each_element_input_list():
+def test_insertion_for_each_element_input_list(empty_list):
     """ If the insert function recieves an iterable list, does the LinkedList add
         a node for each element in that list
     """
     a = [5,6,7,8]
-    aa = LinkedList([])
-    aa.insert(a)
-    assert len(aa) == len(a)
+    empty_list.insert(a)
+    assert len(empty_list) == len(a)
 
 
-def test_insertion_for_each_element_in_iterable_tuple():
+def test_insertion_for_each_element_in_iterable_tuple(empty_list):
     """ If the insert function recieves a tuple as iterable, does the LinkedList
         add a node for each element?
     """
