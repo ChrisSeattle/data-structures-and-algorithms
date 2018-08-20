@@ -8,9 +8,19 @@ class LinkedList(object):
         The value stored in each Node will be the value of the element for which it was created.
     """
 
-    def __init__(self):
+    def __init__(self, data):
         self.head: Node = None # the ': Node' sets the datatype, it is optional.
         self._length: int = 0
+        try:
+            vals = iter(data)
+        except TypeError:
+            vals = [data]
+        for i in vals:
+            current = self.head
+            newNode = Node(i, _next=current)
+            self.head = newNode
+            self._length += 1
+
         # try:
         #     self.insert(val_list)
         # except TypeError:

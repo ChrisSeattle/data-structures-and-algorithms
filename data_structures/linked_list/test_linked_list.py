@@ -11,12 +11,12 @@ def test_alive():
 
 @pytest.fixture
 def empty_list():
-    return LinkedList()
+    return LinkedList([])
 
 
 @pytest.fixture
 def small_list():
-    ll = LinkedList()
+    ll = LinkedList([])
     ll.insert(1)
     ll.insert(2)
     ll.insert(3)
@@ -30,11 +30,10 @@ def test_linked_list_exists():
     assert LinkedList
 
 
-def test_create_instance_of_list():
+def test_create_instance_of_list(empty_list):
     """ can we create a LinkedList instance
     """
-    ll = LinkedList()
-    assert isinstance(ll, LinkedList)
+    assert isinstance(empty_list, LinkedList)
 
 
 def test_default_property_head(empty_list):
@@ -44,21 +43,19 @@ def test_default_property_head(empty_list):
     assert empty_list._length == 0
 
 
-def test_linked_list_str_format():
+def test_linked_list_str_format(empty_list):
     """ Do we get the expected str return
     """
-    ll = LinkedList()
     expected = 'Head: None | Length: 0'
-    actual = str(ll)
+    actual = str(empty_list)
     assert expected == actual
 
 
-def test_linked_list_repr_format():
+def test_linked_list_repr_format(empty_list):
     """ Does the repr get the exprected result
     """
-    ll = LinkedList()
     expected = '<Linked List | Head: None | Length: 0>'
-    actual = repr(ll)
+    actual = repr(empty_list)
     assert expected == actual
 
 
@@ -72,7 +69,7 @@ def test_linked_list_insertion_on_single_val_successful():
     """ Can we insert a single value and see the value in the head position
         and see the length of LinkedList increase
     """
-    ll = LinkedList()
+    ll = LinkedList([])
     ll.insert(42)
     assert ll.head.val == 42
     assert len(ll) == 1
@@ -82,7 +79,7 @@ def test_length_of_list_increases_after_few_single_val_insertion(small_list):
     """ After a few single value insertions, is the most recent value stored in
         the head node and does the length of the list increase accordingly
     """
-    ll = LinkedList()
+    ll = LinkedList([])
     ll.insert(42)
     ll.insert(13)
     assert ll.head.val == 13
@@ -95,7 +92,7 @@ def test_insertion_for_each_element_input_list():
         a node for each element in that list
     """
     a = [5,6,7,8]
-    aa = LinkedList()
+    aa = LinkedList([])
     aa.insert(a)
     assert len(aa) == len(a)
 
@@ -105,7 +102,7 @@ def test_insertion_for_each_element_in_iterable_tuple():
         add a node for each element?
     """
     b = (1, 2, 3)
-    bb = LinkedList()
+    bb = LinkedList([])
     bb.insert(b)
     assert len(bb) == 3
 
@@ -128,7 +125,7 @@ def test_linked_list_includes_all_input_elements():
         for all values that we had put in the list (only a a size of a few elements tested)
     """
     a = [5,6,7,8]
-    aa = LinkedList()
+    aa = LinkedList([])
     aa.insert(a)
     # for i in a:
     #     assert aa.includes(i) is True
@@ -164,7 +161,7 @@ def test_node_repr_return():
     assert expected == actual
 
 
-def linked_list_instantiates_with_list_input():
+def test_linked_list_instantiates_with_list_input():
     """ Can we instantiate a LinkedList and pass it an iterable input such that
         for each element a node is created to store that value
     """
@@ -172,7 +169,7 @@ def linked_list_instantiates_with_list_input():
     aa = LinkedList(a)
     # for i in a:
     #     assert aa.includes(i) is False
-    assert len(aa) != len(a)
+    assert len(aa) == len(a)
     assert aa.includes(5)
     assert aa.includes(6)
     assert aa.includes(7)
