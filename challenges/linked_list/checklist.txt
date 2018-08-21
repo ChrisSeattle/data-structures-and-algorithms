@@ -1,0 +1,17 @@
+### Features Checklist
+
+- [x] Create a branch in your repository called ll_insertions
+- [ ] Extend your LinkedList class according to the feature tasks below
+- [ ] .append(value) which adds a new node with the given value to the end of the list
+- [ ] .insertBefore(value, newVal) which add a new node with the given newValue immediately before the first value node
+- [ ] .insertAfter(value, newVal) which add a new node with the given newValue immediately after the first value node
+- [ ] Include any language-specific configuration files required for this challenge to become an individual component, module, library, etc.
+- [ ] .append(value) which adds a new node with the given value to the end of the list
+- [ ] .insertBefore(value, newVal) which add a new node with the given newValue immediately before the first value node
+- [ ] .insertAfter(value, newVal) which add a new node with the given newValue immediately after the first value node
+- [x] Take a photo of your completed whiteboard, matching the example whiteboard layout
+- [x] Copy your photo into an /assets directory in your repo
+- [x] Give the image file the same name as the branch you are working on
+- [x] Embed the image in your README.md documentation
+- [ ] Create a pull request from your branch to your master branch
+- [ ] In your open pull request, leave as a comment a checklist of the specifications and tasks above, with the actual steps that you completed checked off
