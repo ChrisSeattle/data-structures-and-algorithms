@@ -41,7 +41,6 @@ class LinkedList(object):
     def __next__(self):
         return self._next
 
-
     def insert(self, val: Any) -> Any:
         """ If input is a iterable, for each element create a node with that value
             If input is a single value, create a node with that value
@@ -58,7 +57,6 @@ class LinkedList(object):
             self.head = newNode
             self._length += 1
 
-
     def includes(self, val: Any) -> bool: #the arrow datatype says it returns that datatype
         """ Search through each node to see if that nodes value is equal to val
             If one is found, return a bool True
@@ -72,7 +70,6 @@ class LinkedList(object):
                 break
             current = current._next
         return False
-
 
     def kth_from_end(self, k):
         """ For a given k, find the node that is k from the end of the
@@ -95,4 +92,3 @@ class LinkedList(object):
             counter += 1
             print(counter, ": ", current.val)
         return current.val
-

@@ -10,4 +10,3 @@ class Node(object):
 
     def __repr__(self):
         return f'<Node | Val: {self.val} | Next: {self._next}>'
-
