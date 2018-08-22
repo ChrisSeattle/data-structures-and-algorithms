@@ -25,52 +25,52 @@ def test_alive():
     pass
 
 
-def test_ll_kth_from_end_exists():
-    """ is the method ll_kth_from_end present and can we see it
+def test_kth_from_end_exists():
+    """ is the method kth_from_end present and can we see it
     """
-    assert LinkedList.ll_kth_from_end
+    assert LinkedList.kth_from_end
 
 
-def test_ll_kth_from_end_exception_on_list_too_short(small_list):
+def test_kth_from_end_exception_on_list_too_short(small_list):
     """ Do we get an exemption if our linked list is not big enough to
         look k positions back?
     """
     expected = 'exception'
-    actual = small_list.ll_kth_from_end(101)
+    actual = small_list.kth_from_end(101)
     assert expected == actual
 
 
-def test_ll_kth_from_end_when_target_last_node(small_list):
+def test_kth_from_end_when_target_last_node(small_list):
     """ If k is 0, then do we get the last node as expected
     """
     expected = 1
-    actual = small_list.ll_kth_from_end(0)
+    actual = small_list.kth_from_end(0)
     assert expected == actual
 
 
-def test_ll_kth_from_end_item_when_target_is_head(small_list):
+def test_kth_from_end_item_when_target_is_head(small_list):
     """ If our target is the Head of the LinkedList, do we get expected result
     """
     expected = 4
-    actual = small_list.ll_kth_from_end(3)
+    actual = small_list.kth_from_end(3)
     assert expected == actual
 
 
-def test_ll_kth_from_end_item_middle_num(small_list):
+def test_kth_from_end_item_middle_num(small_list):
     """ If our target is in a position in the middle, doe we get expected result
     """
     expected = 2
-    actual = small_list.ll_kth_from_end(1)
+    actual = small_list.kth_from_end(1)
     assert expected == actual
 
 
-def test_ll_kth_from_end_empty_list(empty_list):
+def test_kth_from_end_empty_list(empty_list):
     """ If the LinkedList has no nodes, we should get an
-        exemption response
+        exception response
     """
-    expexted = 'exception'
-    actual = empty_list.ll_kth_from_end(5)
-    assert expexted == actual
+    expected = 'exception'
+    actual = empty_list.kth_from_end(45)
+    assert expected == actual
 
 
 # -- Tests from Previous Work --

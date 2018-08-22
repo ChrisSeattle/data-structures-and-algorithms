@@ -74,22 +74,25 @@ class LinkedList(object):
         return False
 
 
-    def ll_kth_from_end(self, k):
+    def kth_from_end(self, k):
         """ For a given k, find the node that is k from the end of the
             linked list (count starting with 0)
         """
+        if self.head is None:
+            return 'exception'
+        current = self.head
         counter = 0
-        current = self.head
         while current._next is not None:
-            counter += 1
             current = current._next
-            print(counter, ": ", current.val)
+            counter += 1
         if k > counter:
-            return('exception')
-        r = counter - k - 1
+            return 'exception'
+        r, counter = counter - k, 0
         current = self.head
-        r = 0
+        print(counter, ": ", current.val)
         while counter < r:
             current = current._next
             counter += 1
+            print(counter, ": ", current.val)
         return current.val
+
