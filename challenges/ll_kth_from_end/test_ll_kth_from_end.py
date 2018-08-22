@@ -1,11 +1,6 @@
-from .linked_list import LinkedList, Node
+from .ll_kth_from_end import LinkedList, Node
+# from .node_class import LinkedList, Node
 import pytest
-
-
-def test_alive():
-    """ Does the testing file run
-    """
-    pass
 
 
 @pytest.fixture
@@ -20,8 +15,65 @@ def small_list():
     ll.insert(2)
     ll.insert(3)
     ll.insert(4)
+    # values in Node order: 4 3 2 1 (null)
     return ll
 
+
+def test_alive():
+    """ Does the testing file run
+    """
+    pass
+
+
+def test_kth_from_end_exists():
+    """ is the method kth_from_end present and can we see it
+    """
+    assert LinkedList.kth_from_end
+
+
+def test_kth_from_end_exception_on_list_too_short(small_list):
+    """ Do we get an exemption if our linked list is not big enough to
+        look k positions back?
+    """
+    expected = 'exception'
+    actual = small_list.kth_from_end(101)
+    assert expected == actual
+
+
+def test_kth_from_end_when_target_last_node(small_list):
+    """ If k is 0, then do we get the last node as expected
+    """
+    expected = 1
+    actual = small_list.kth_from_end(0)
+    assert expected == actual
+
+
+def test_kth_from_end_item_when_target_is_head(small_list):
+    """ If our target is the Head of the LinkedList, do we get expected result
+    """
+    expected = 4
+    actual = small_list.kth_from_end(3)
+    assert expected == actual
+
+
+def test_kth_from_end_item_middle_num(small_list):
+    """ If our target is in a position in the middle, doe we get expected result
+    """
+    expected = 2
+    actual = small_list.kth_from_end(1)
+    assert expected == actual
+
+
+def test_kth_from_end_empty_list(empty_list):
+    """ If the LinkedList has no nodes, we should get an
+        exception response
+    """
+    expected = 'exception'
+    actual = empty_list.kth_from_end(45)
+    assert expected == actual
+
+
+# -- Tests from Previous Work --
 
 def test_linked_list_exists():
     """ Do we see LinkedList
@@ -80,7 +132,6 @@ def test_length_of_list_increases_after_few_single_val_insertion(small_list):
     assert len(small_list) == 4
     assert small_list.head.val == 4
 
-
 def test_insertion_for_each_element_input_list(empty_list):
     """ If the insert function recieves an iterable list, does the LinkedList add
         a node for each element in that list
@@ -113,59 +164,16 @@ def test_linked_list_includes_works_last_node(small_list):
     assert small_list.includes(1) is True
 
 
-def test_linked_list_includes_all_insert_elements():
+def test_linked_list_includes_all_input_elements():
     """ Is the includes method able to identify if a the value is in the LinkedList
-        for all values that we had put in the list (only a lift of a few elements tested)
+        for all values that we had put in the list (only a a size of a few elements tested)
     """
     a = [5,6,7,8]
     aa = LinkedList([])
     aa.insert(a)
     for i in a:
         assert aa.includes(i) is True
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 4200f89307865023004a4dc117de662123105636
     assert len(aa) == len(a)
-
-
-def test_linked_list_returns_false_for_includes_val_not_in_list(small_list):
-    assert small_list.includes(42) is False
-    assert small_list.includes(0) is False
-
-
-def test_linked_list_instantiates_with_list_input():
-    """ Can we instantiate a LinkedList and pass it an iterable input such that
-        for each element a node is created to store that value
-    """
-    a = [5,6,7,8]
-    aa = LinkedList(a)
-    for i in a:
-        assert aa.includes(i) is True
-<<<<<<< HEAD
->>>>>>> ee6330cff13d5e1b1b51d69e4dc660e9fa7896f9
-=======
->>>>>>> 4200f89307865023004a4dc117de662123105636
-    assert len(aa) == len(a)
-
-
-def test_linked_list_instantiates_with_tuple_input():
-    """ If the LinkedList is instantiated with a a tuple as iterable, does the
-        LinkedList add a node for each element?
-    """
-    b = (1, 2, 3)
-    bb = LinkedList(b)
-    assert len(bb) == 3
-
-
-def test_linked_list_instantiated_with_values_returns_includes_false_for_val_not_in_list():
-    """ After instantiating the LinkedList with a list input (to create a Node for each element),
-        we should get a false for testing if the LinkedList includes values not in that list
-    """
-    b = [9, 10, 11, 12]
-    bb = LinkedList(b)
-    assert bb.includes(42) is False
 
 
 def test_node_exists():
@@ -174,7 +182,7 @@ def test_node_exists():
     assert Node
 
 
-def test_node_str_return_and_node_holds_expected_values():
+def test_node_str_return():
     """ Can we create a Node and see that it the value we passed to it
         is returned as expected by the Node
     """
@@ -196,4 +204,18 @@ def test_node_repr_return():
     actual = repr(Node(input))
     assert expected == actual
 
+
+def test_linked_list_instantiates_with_list_input():
+    """ Can we instantiate a LinkedList and pass it an iterable input such that
+        for each element a node is created to store that value
+    """
+    a = [5,6,7,8]
+    aa = LinkedList(a)
+    # for i in a:
+    #     assert aa.includes(i) is False
+    assert len(aa) == len(a)
+    assert aa.includes(5)
+    assert aa.includes(6)
+    assert aa.includes(7)
+    assert aa.includes(8)
 
