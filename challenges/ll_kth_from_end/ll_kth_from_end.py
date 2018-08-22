@@ -59,8 +59,7 @@ class LinkedList(object):
 
     def includes(self, val: Any) -> bool: #the arrow datatype says it returns that datatype
         """ Search through each node to see if that nodes value is equal to val
-            If one is found, return a bool True
-            If the val is not in the val for any Node, return a bool False
+            If one is found, return a bool True. If the val is not in the val for any Node, return a bool False
         """
         current = self.head
         while True:
