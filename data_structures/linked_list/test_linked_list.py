@@ -78,11 +78,6 @@ def test_length_of_list_increases_after_few_single_val_insertion(small_list):
     """ After a few single value insertions, is the most recent value stored in
         the head node and does the length of the list increase accordingly
     """
-    # ll = LinkedList([])
-    # ll.insert(42)
-    # ll.insert(13)
-    # assert ll.head.val == 13
-    # assert len(ll) == 2
     assert len(small_list) == 4
     assert small_list.head.val == 4
 
@@ -125,8 +120,8 @@ def test_linked_list_includes_all_input_elements():
     a = [5,6,7,8]
     aa = LinkedList([])
     aa.insert(a)
-    # for i in a:
-    #     assert aa.includes(i) is True
+    for i in a:
+        assert aa.includes(i) is True
     assert len(aa) == len(a)
 
 

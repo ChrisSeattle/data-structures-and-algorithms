@@ -9,4 +9,5 @@ Write a method for the Linked List class which takes a number, k, as a parameter
 ## Solution
 ![Whiteboard Image](../../assets/ll_kth_from_end.jpg)
 
-**Authors**: Chris L Chapman, Madeline Peters, Steph Harper, Nick Damberg
+**Author**: Chris L Chapman
+**Contributors**: Madeline Peters, Steph Harper, Nick Damberg

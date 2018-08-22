@@ -11,7 +11,9 @@ pipenv install pytest
 
 ## Table of Contents
 1. Data Structures
-    - [List](./data_structures/list)
+    - [list](./data_structures/list)
+    - [linked_list](.data_structures/list)
 2. Algorithms
     - [array_shift](./challenges/array_shift)
     - [array_binary_shift](./challenges/array_binary_search)
+    - [ll_kth_from_end](./challenges/ll_kth_from_end)
