@@ -43,7 +43,10 @@ class LinkedList(object):
 
 
     def insert(self, val: Any) -> Any:
-        """ Docstring from linked_list
+        """ If input is a iterable, for each element create a node with that value
+            If input is a single value, create a node with that value
+            In their original order, each new node is inserted at the Head of the LinkedList
+            Meaning the last value of a iterable (like a list) will be the value at Head
         """
         try:
             vals = iter(val)
@@ -73,17 +76,19 @@ class LinkedList(object):
 
     def ll_kth_from_end(self, k):
         """ For a given k, find the node that is k from the end of the
-            linked list (counting from 0)
+            linked list (count starting with 0)
         """
         counter = 0
         current = self.head
         while current._next is not None:
             counter += 1
-            current = current_node._next
+            current = current._next
+            print(counter, ": ", current.val)
         if k > counter:
             return('exception')
         r = counter - k - 1
         current = self.head
+        r = 0
         while counter < r:
             current = current._next
             counter += 1
