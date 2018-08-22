@@ -16,4 +16,5 @@ pipenv install pytest
 2. Algorithms
     - [array_shift](./challenges/array_shift)
     - [array_binary_shift](./challenges/array_binary_search)
+   - [ll_inserts](./challenges/linked_lists)
     - [ll_kth_from_end](./challenges/ll_kth_from_end)
