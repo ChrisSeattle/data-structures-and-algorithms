@@ -1,4 +1,3 @@
-# from .this_directory import function_name, other_function
 from .linked_list import LinkedList, Node
 import pytest
 
@@ -124,7 +123,10 @@ def test_linked_list_includes_all_insert_elements():
     for i in a:
         assert aa.includes(i) is True
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 4200f89307865023004a4dc117de662123105636
     assert len(aa) == len(a)
 
 
@@ -141,7 +143,10 @@ def test_linked_list_instantiates_with_list_input():
     aa = LinkedList(a)
     for i in a:
         assert aa.includes(i) is True
+<<<<<<< HEAD
 >>>>>>> ee6330cff13d5e1b1b51d69e4dc660e9fa7896f9
+=======
+>>>>>>> 4200f89307865023004a4dc117de662123105636
     assert len(aa) == len(a)
 
 
@@ -190,7 +195,5 @@ def test_node_repr_return():
     expected = f'<Node | Val: {input} | Next: None>'
     actual = repr(Node(input))
     assert expected == actual
-
-
 
 
