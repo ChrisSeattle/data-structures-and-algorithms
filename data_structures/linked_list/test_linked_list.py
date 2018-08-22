@@ -81,6 +81,7 @@ def test_length_of_list_increases_after_few_single_val_insertion(small_list):
     assert len(small_list) == 4
     assert small_list.head.val == 4
 
+
 def test_insertion_for_each_element_input_list(empty_list):
     """ If the insert function recieves an iterable list, does the LinkedList add
         a node for each element in that list
@@ -113,16 +114,53 @@ def test_linked_list_includes_works_last_node(small_list):
     assert small_list.includes(1) is True
 
 
-def test_linked_list_includes_all_input_elements():
+def test_linked_list_includes_all_insert_elements():
     """ Is the includes method able to identify if a the value is in the LinkedList
-        for all values that we had put in the list (only a a size of a few elements tested)
+        for all values that we had put in the list (only a lift of a few elements tested)
     """
     a = [5,6,7,8]
     aa = LinkedList([])
     aa.insert(a)
     for i in a:
         assert aa.includes(i) is True
+<<<<<<< HEAD
+=======
     assert len(aa) == len(a)
+
+
+def test_linked_list_returns_false_for_includes_val_not_in_list(small_list):
+    assert small_list.includes(42) is False
+    assert small_list.includes(0) is False
+
+
+def test_linked_list_instantiates_with_list_input():
+    """ Can we instantiate a LinkedList and pass it an iterable input such that
+        for each element a node is created to store that value
+    """
+    a = [5,6,7,8]
+    aa = LinkedList(a)
+    for i in a:
+        assert aa.includes(i) is True
+>>>>>>> ee6330cff13d5e1b1b51d69e4dc660e9fa7896f9
+    assert len(aa) == len(a)
+
+
+def test_linked_list_instantiates_with_tuple_input():
+    """ If the LinkedList is instantiated with a a tuple as iterable, does the
+        LinkedList add a node for each element?
+    """
+    b = (1, 2, 3)
+    bb = LinkedList(b)
+    assert len(bb) == 3
+
+
+def test_linked_list_instantiated_with_values_returns_includes_false_for_val_not_in_list():
+    """ After instantiating the LinkedList with a list input (to create a Node for each element),
+        we should get a false for testing if the LinkedList includes values not in that list
+    """
+    b = [9, 10, 11, 12]
+    bb = LinkedList(b)
+    assert bb.includes(42) is False
 
 
 def test_node_exists():
@@ -131,7 +169,7 @@ def test_node_exists():
     assert Node
 
 
-def test_node_str_return():
+def test_node_str_return_and_node_holds_expected_values():
     """ Can we create a Node and see that it the value we passed to it
         is returned as expected by the Node
     """
@@ -154,18 +192,5 @@ def test_node_repr_return():
     assert expected == actual
 
 
-def test_linked_list_instantiates_with_list_input():
-    """ Can we instantiate a LinkedList and pass it an iterable input such that
-        for each element a node is created to store that value
-    """
-    a = [5,6,7,8]
-    aa = LinkedList(a)
-    # for i in a:
-    #     assert aa.includes(i) is False
-    assert len(aa) == len(a)
-    assert aa.includes(5)
-    assert aa.includes(6)
-    assert aa.includes(7)
-    assert aa.includes(8)
 
 
