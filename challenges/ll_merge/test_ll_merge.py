@@ -1,11 +1,10 @@
-from .ll_merge import merge_lists, LinkedList, Node
+from .ll_merge import LinkedList, Node
 import pytest
 
 
 @pytest.fixture
 def empty_list():
     return LinkedList([])
-
 
 @pytest.fixture
 def small_list():
@@ -39,34 +38,43 @@ def test_alive():
 # New tests
 
 def test_linked_list_ll_merge_exists():
-    """ Test ll_merge exists
+    """ Test merge exists
     """
-    assert merge_lists
+    assert LinkedList.merge_lists
 
 
-def test_merge_lists_basic_works():
-    a = LinkedList(1)
-    b = LinkedList(2)
-    expected = LinkedList([2, 1])
-    actual = merge_lists(a, b)
-    print(expected)
-    print(actual)
-    assert expected == actual
+def test_merge_lists_basic_works(empty_list):
+    a = empty_list
+    b = LinkedList([2])
+    assert isinstance(a, LinkedList)
+    assert isinstance(b, LinkedList)
+    assert isinstance(a.merge_lists(b), LinkedList)
+
 
 def test_linked_list_merge_returns_not_valid_list(empty_list):
     """ assert empty lists give back None
     """
     expected = None
-    actual = merge_lists(empty_list, empty_list)
+    a = empty_list
+    b = LinkedList([])
+    actual = a.merge_lists(b)
     assert expected == actual
 
 
-def test_linked_list_merge_merges_lists_equal_lengths(small_list, empty_list):
+def test_linked_list_merge_lists_second_list_empty(small_list, empty_list):
     """ Test empty list and list input gives back list
     """
-    expected = small_list
-    actual = merge_lists(small_list, empty_list)
-    assert expected == actual
+    a = small_list
+    actual = a.merge_lists(empty_list)
+    assert a == actual
+
+
+def test_linked_list_merge_lists_first_list_empty(small_list, empty_list):
+    """ Test empty list and list input gives back list
+    """
+    b = small_list
+    actual = empty_list.merge_lists(b)
+    assert b == actual
 
 
 def test_linked_list_merge_merges_lists_equal_lengths_other(small_list):
@@ -83,7 +91,7 @@ def test_linked_list_merge_merges_lists_equal_lengths_other(small_list):
     r.insert(3)
     b.insert(4)
     r.insert(4)
-    actual = merge_lists(a, b)
+    actual = a.merge_lists(b)
     assert r == actual
 
 
