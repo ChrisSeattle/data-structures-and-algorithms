@@ -44,6 +44,15 @@ def test_linked_list_ll_merge_exists():
     assert merge_lists
 
 
+def test_merge_lists_basic_works():
+    a = LinkedList(1)
+    b = LinkedList(2)
+    expected = LinkedList([2, 1])
+    actual = merge_lists(a, b)
+    print(expected)
+    print(actual)
+    assert expected == actual
+
 def test_linked_list_merge_returns_not_valid_list(empty_list):
     """ assert empty lists give back None
     """
@@ -63,15 +72,19 @@ def test_linked_list_merge_merges_lists_equal_lengths(small_list, empty_list):
 def test_linked_list_merge_merges_lists_equal_lengths_other(small_list):
     """ Test empty list and list input gives back list
     """
-    expected = small_list
+    r = LinkedList([])
     a = LinkedList([])
     b = LinkedList([])
     a.insert(1)
+    r.insert(1)
     b.insert(2)
+    r.insert(2)
     a.insert(3)
+    r.insert(3)
     b.insert(4)
+    r.insert(4)
     actual = merge_lists(a, b)
-    assert expected == actual
+    assert r == actual
 
 
 # End new tests

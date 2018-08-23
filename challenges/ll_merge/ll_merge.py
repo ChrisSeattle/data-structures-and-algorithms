@@ -17,13 +17,17 @@ def merge_lists(inp1, inp2):
     curr, curr2 = inp1.head, inp2.head
 
     while True:
-        if curr.next is None:
-            curr.next = curr2
+        if curr._next is None:
+            curr._next = curr2
             return
-        temp, curr.next = curr.next, curr2
-        if curr2.next is None:
-            curr2.next = temp
+        temp, curr._next = curr._next, curr2
+        if curr2._next is None:
+            curr2._next = temp
             return
-        temp2, curr2.next = curr2.next, temp
+        temp2, curr2._next = curr2._next, temp
         curr, curr2 = temp, temp2
+    current = inp1.head
+    while current.next is not None:
+        print(current.val)
+        current = current.next
     return inp1
