@@ -91,8 +91,9 @@ def test_linked_list_merge_merges_lists_equal_lengths_other(small_list):
     r.insert(3)
     b.insert(4)
     r.insert(4)
-    actual = a.merge_lists(b)
-    assert r == actual
+    a.merge_lists(b)
+    assert isinstance(a, LinkedList)
+    assert r == a
 
 
 # End new tests
