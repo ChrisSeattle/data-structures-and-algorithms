@@ -109,12 +109,13 @@ class LinkedList(object):
         while True:
             if curr._next is None:
                 curr._next = curr2
-                return
+                break
             temp, curr._next = curr._next, curr2
             if curr2._next is None:
                 curr2._next = temp
-                return
+                break
             temp2, curr2._next = curr2._next, temp
             curr, curr2 = temp, temp2
-
+            print(curr)
+            print(curr2)
         return self
