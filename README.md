@@ -15,7 +15,10 @@ pipenv install pytest
 
 1. Data Structures
     - [list](./data_structures/list)
-    - [linked_list](.data_structures/list)
+    - [linked_list](.data_structures/linked_list)
+    - [stack_queue](.data_structures/stack_queue)
+    <!-- - [branch_name](.data_structures/branch_name) -->
+
 2. Algorithms
     - [array_shift](./challenges/array_shift)
     - [array_binary_shift](./challenges/array_binary_search)
@@ -24,4 +27,4 @@ pipenv install pytest
     - [ll_kth_from_end](./challenges/ll_kth_from_end)
     - [ll_merge](./challenges/ll_merge)
     - [queue_with_stacks](./challenges/queue_with_stacks)
-    - [branch_name](./challenges/branch_name)
+    <!-- - [branch_name](./challenges/branch_name) -->
