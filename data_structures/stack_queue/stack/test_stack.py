@@ -37,8 +37,8 @@ def test_default_property_top(empty_stack):
     assert empty_stack._length == 0
 
 
-def test_stack_str_format(empty_stack):
-    """ Do we get the expected str return
+def test_stack_str_format_on_empty(empty_stack):
+    """ Do we get the expected str return on empty stack
     """
     expected = 'Top: None | Length: 0'
     actual = str(empty_stack)
@@ -62,7 +62,7 @@ def test_stack_push_increases_stack_size(empty_stack):
     """ After a value is pushed to the stack, does length of stack increment
     """
     expected = len(empty_stack) + 1
-    empty_stack(42)
+    empty_stack.push(42)
     assert len(empty_stack) == expected
 
 
@@ -83,18 +83,60 @@ def test_insertion_for_each_element_in_iterable_tuple():
     assert bb.top.val == 3
 
 
+def test_stack_str_format_on_not_empty():
+    """ Do we get the expected str return when stack has nodes with values
+    """
+    st = Stack(42)
+    expected = 'Top: 42 | Length: 1'
+    actual = str(st)
+    assert expected == actual
+
+
 def test_stack_pop_exists():
     """ Is the pop method present in the Stack constructor
     """
     assert Stack.pop
 
 
-def test_stack_pop_returns_val_of_top_and_modifies_length(small_stack):
+def test_stack_pop_returns_val_of_top(small_stack):
+    """ when pop method is called, it shortens the length of the Stack
+        and returns the value that was stored at the top position.
+    """
+    st = Stack((1, 2, 3, 4, 5))
+    target = st.pop
+    # assert len(st) == 5
+    assert target == 5
+    # assert len(st) == 4
+    assert small_stack.pop == 4
+
+
+def test_stack_pop_modifies_length(small_stack):
     """ when pop method is called, it shortens the length of the Stack
         and returns the value that was stored at the top position.
     """
     expected_length = len(small_stack) - 1
-    assert small_stack.pop == 4
+    small_stack.pop
+    actual_length = len(small_stack)
+    assert expected_length == actual_length
+
+
+def test_stack_peek_exists():
+    """ Is the peek method present in the Stack constructor
+    """
+    assert Stack.peek
+
+
+def test_stack_peek_returns_current_top(small_stack):
+    """ peek returns the current top without modifying the stack
+    """
+    assert small_stack.peek == 4
+
+
+def test_stack_peek_does_not_change_length(small_stack):
+    """ peek returns the current top without modifying the stack
+    """
+    expected_length = len(small_stack)
+    small_stack.peek
     assert expected_length == len(small_stack)
 
 

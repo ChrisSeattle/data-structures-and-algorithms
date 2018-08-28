@@ -1,6 +1,5 @@
 from .node import Node
-# from typing import Any
-
+from typing import Any
 
 class Stack(object):
     """ This will create an empty Stack when instantiated, with a
@@ -14,16 +13,18 @@ class Stack(object):
             if no data is passed on instantiating.
             If instantiated with data, create a Node for each iterable value
         """
-        self.top = None
-        self._length = 0
+        self.top: Node = None
+        self._length: int = 0
         try:
             vals = iter(data)
         except TypeError:
             vals = [data]
         for i in vals:
-            newNode = Node(i, _next=self.top)
+            current = self.top
+            newNode = Node(i, _next=current)
             self.top = newNode
             self._length += 1
+            # print(f'new top is now {self.top.val}, length is {self._length}')
 
     def __len__(self):
         return self._length
@@ -43,10 +44,14 @@ class Stack(object):
     def pop(self):
         """ Removes and returns the Node currently at the top of the stack
         """
+        print('we want to pop!')
         if self._length == 0:
             return f'The stack has no values'
         current = self.top
-        val, self.top = current.val, current._next
+        val = current.val
+        new = current._next.val
+        print(val, new)
+        self.top = current._next
         self._length -= 1
         return val
 
@@ -54,17 +59,3 @@ class Stack(object):
         """ Reports the top of the stack, but does not change the stack
         """
         return self.top
-
-
-
-
-
-#from textwrap import dedent
-#import sys
-
-
-# DECLARE_CONSTANT_LISTS = []
-# DECLARE_CONSTANT_STRINGS = ''
-# DECLARE_CONSTANT_DICTIONARY = {}
-# DECLARE_CONSTANT_SETS = set()
-
