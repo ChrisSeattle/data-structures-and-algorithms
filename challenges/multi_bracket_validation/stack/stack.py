@@ -1,7 +1,6 @@
 from .node import Node
 from typing import Any
 
-
 class Stack(object):
     """ This will create an empty Stack when instantiated, with a
         default None value assigned to 'top'.
@@ -59,4 +58,4 @@ class Stack(object):
     def peek(self):
         """ Reports the top of the stack, but does not change the stack
         """
-        return self.top
+        return self.top.val

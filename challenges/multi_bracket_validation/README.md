@@ -15,4 +15,4 @@ Curly Brackets : {}
 ![Whiteboard Image](../../assets/multi_bracket_validation.jpg)
 
 **Author**: Chris L Chapman
-**Whiteboard Contributors**  J Christie
+**Whiteboard Contributors** Chris L Chapman, J Christie

@@ -1,5 +1,7 @@
-from .this_directory import function_name, other_function
-from ... top.middle.lower.filename import Class1, Class2
+# from .multi_bracket_validation import multi_bracket_validation
+from ... data_structures.stack.stack import Stack
+from .multi_bracket_validation import multi_bracket_validation
+
 import pytest
 
 
@@ -9,32 +11,35 @@ def test_alive():
     pass
 
 
-def test_function_name_exists():
+def test_multi_bracket_validation_exists():
     """ can we see the basic function
     """
-    assert function_name
+    assert multi_bracket_validation
 
 
-
-@pytest.fixture
-def empty_list():
-    return Class1()
-
-
-@pytest.fixture
-def small_list():
-    sl = Class2()
-    sl.insert(1)
-    sl.insert(2)
-    sl.insert(3)
-    sl.insert(4)
-    return sl
-
-
-def test_function_name_results_are_a_certain_way(empty_list):
-    """ docstring on what we are checking
+def test_multi_bracket_validation_passes_easy():
+    """ this input is easy to see it should pass
     """
-    expected = 44
-    actual = empty_list.method(44)
-    assert expected == actual
+    a = '(this[is some {input that} should] work)easy'
+    assert multi_bracket_validation(a)
 
+
+def test_multi_bracket_validation_passes_sibling_brackets():
+    """ The validation should work if ther are sibling brackets
+    """
+    b = 'this (is [some] {input that} [should] also)()pass'
+    assert multi_bracket_validation(a)
+
+
+def test_multi_bracket_validation_false_for_overlapping():
+    """ If the brackets overlap, we should get a False return
+    """
+    c = '(Oops[sometimes] [there {is] accidental} overlap)'
+    assert multi_bracket_validation(a) is False
+
+
+def test_multi_bracket_validation_false_for_unfinished():
+    """ If we nested just fine, but forgot one, should return false
+    """
+    d = 'hey, (do not [forget] {we have} a (paranthesis) still'
+    assert multi_bracket_validation(d) is False
