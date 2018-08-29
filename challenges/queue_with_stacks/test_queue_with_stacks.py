@@ -1,4 +1,4 @@
-from .queue_with_stacks import queue_with_stacks, Stack
+from .queue_with_stacks import Queue, Stack, Node
 import pytest
 
 
@@ -9,136 +9,130 @@ def test_alive():
 
 
 @pytest.fixture
-def empty_stack():
-    return Stack([])
+def empty_q():
+    return Queue()
 
 
 @pytest.fixture
-def small_stack():
-    st = Stack([1, 2, 3, 4])
-    return st
+def small_q2():
+    q = Queue()
+    q.enqueue(1)
+    q.enqueue(2)
+    q.enqueue(3)
+    q.enqueue(4)
+    return q
 
 
-def test_stack_exists():
-    """ Do we see Stack
+def test_queue_exists():
+    """ Do we see Queue
     """
-    assert Stack
+    assert Queue
 
 
-def test_create_instance_of_stack(empty_stack):
-    """ can we create a Stack instance with no input values
+def test_create_instance_of_queue(empty_q):
+    """ can we create a Queue instance with no input values
     """
-    assert isinstance(empty_stack, Stack)
+    assert isinstance(empty_q, Queue)
 
 
-def test_default_property_top(empty_stack):
+def test_queue_default_property(empty_q):
     """ Do the default settings work as expected
     """
-    assert empty_stack.top is None
-    assert empty_stack._length == 0
+    assert empty_q.front is None
+    assert empty_q.back is None
+    assert empty_q._length == 0
 
 
-def test_stack_str_format_on_empty(empty_stack):
-    """ Do we get the expected str return on empty stack
+def test_queue_enqueue_exists():
+    """ Is the enqueue method present in the Queue constructor
     """
-    expected = 'Top: None | Length: 0'
-    actual = str(empty_stack)
-    assert expected == actual
+    assert Queue.enqueue
 
 
-def test_stack_push_exists():
-    """ Is the push method present in the Stack constructor
+def test_queue_add_first_val_successful(empty_q):
+    """ Can we insert a single value and see the value in the front position
     """
-    assert Stack.push
+    empty_q.enqueue(42)
+    assert empty_q.front.val == 42
+    assert len(empty_q) == 1
 
 
-def test_stack_push_on_val_successful(empty_stack):
-    """ Can we insert a single value and see the value in the top position
+def test_queue_add_second_val_successful(empty_q):
+    """ Can we insert a single value and see the value in the front position
     """
-    empty_stack.push(42)
-    assert empty_stack.top.val == 42
+    empty_q.enqueue(42)
+    empty_q.enqueue(13)
+    assert empty_q.front.val == 42
+    assert empty_q.back.val == 13
 
 
-def test_stack_push_increases_stack_size(empty_stack):
-    """ After a value is pushed to the stack, does length of stack increment
+def test_queue_add_third_val_successful(empty_q):
+    """ Can we insert a single value and see the value in the front position
     """
-    expected = len(empty_stack) + 1
-    empty_stack.push(42)
-    assert len(empty_stack) == expected
+    empty_q.enqueue(42)
+    empty_q.enqueue(13)
+    empty_q.enqueue(7)
+    assert empty_q.front.val == 42
+    assert empty_q.back.val == 7
 
 
-def test_can_instantiate_stack_with_list(small_stack):
+def test_queue_enque_increases_queue_size(empty_q):
+    """ After a value is put into the queue, does length of queue increment
+    """
+    expected = len(empty_q) + 1
+    empty_q.enqueue(42)
+    assert len(empty_q) == expected
+
+
+def test_enqueue_continues_to_add_multiple_nodes(empty_q):
+    """ Multiple calls to to enqueue method continues to add elements & increment length
+    """
+    expected = len(empty_q) + 4
+    empty_q.enqueue(42)
+    empty_q.enqueue(13)
+    empty_q.enqueue(7)
+    empty_q.enqueue(314)
+    assert len(empty_q) == expected
+
+
+def test_small_q2_is_valid_queue(small_q2):
+    """ We are depending on small_q2, so let's make sure it is a Queue data structure
+    """
+    assert isinstance(small_q2, Queue)
+
+
+def test_can_instantiate_queue_with_list(small_q2):
     """ Instantiate with a list of four items. Does it report the correct len
-        and is the last one added now at the top.
+        Is first one at the front and the last one added now at the back.
     """
-    assert len(small_stack) == 4
-    assert small_stack.top.val == 4
+    assert len(small_q2) == 4
+    assert small_q2.front.val == 1
+    assert small_q2.back.val == 4
 
 
-def test_insertion_for_each_element_in_iterable_tuple():
-    """ If the Stack is instantiated with a tuple, does it
-        add a node for each element?
+def test_dequeue_exists():
+    """ Is the enqueue method present in the enqueue constructor
     """
-    bb = Stack((1, 2, 3))
-    assert len(bb) == 3
-    assert bb.top.val == 3
+    assert Queue.dequeue
 
 
-def test_stack_str_format_on_not_empty():
-    """ Do we get the expected str return when stack has nodes with values
+def test_dequeue_returns_a_node(small_q2):
+    """ when dequeue method is called, it shortens the length of the Queue
+        and returns the node from the front position
     """
-    st = Stack(42)
-    expected = 'Top: 42 | Length: 1'
-    actual = str(st)
-    assert expected == actual
+    output = small_q2.dequeue()
+    assert isinstance(output, Node)
+    # assert output.val == 4
 
 
-def test_stack_pop_exists():
-    """ Is the pop method present in the Stack constructor
+def test_dequeue_modifies_length(small_q2):
+    """ when dequeue method is called, it shortens the length of the Queue
+        and returns the value that was stored at the front position.
     """
-    assert Stack.pop
-
-
-def test_stack_pop_returns_val_of_top(small_stack):
-    """ when pop method is called, it shortens the length of the Stack
-        and returns the value that was stored at the top position.
-    """
-    st = Stack((1, 2, 3, 4, 5))
-    target = st.pop
-    # assert len(st) == 5
-    assert target == 5
-    # assert len(st) == 4
-    assert small_stack.pop == 4
-
-
-def test_stack_pop_modifies_length(small_stack):
-    """ when pop method is called, it shortens the length of the Stack
-        and returns the value that was stored at the top position.
-    """
-    expected_length = len(small_stack) - 1
-    small_stack.pop
-    actual_length = len(small_stack)
+    expected_length = len(small_q2) - 1
+    output = small_q2.dequeue()
+    actual_length = len(small_q2)
     assert expected_length == actual_length
-
-
-def test_stack_peek_exists():
-    """ Is the peek method present in the Stack constructor
-    """
-    assert Stack.peek
-
-
-def test_stack_peek_returns_current_top(small_stack):
-    """ peek returns the current top without modifying the stack
-    """
-    assert small_stack.peek == 4
-
-
-def test_stack_peek_does_not_change_length(small_stack):
-    """ peek returns the current top without modifying the stack
-    """
-    expected_length = len(small_stack)
-    small_stack.peek
-    assert expected_length == len(small_stack)
 
 
 def test_node_exists():
@@ -157,6 +151,21 @@ def test_node_holds_expected_values():
     assert expected_b == actual_b
 
 
+def test_node_has_expected_next_property_defaults_none():
+    """ Does Node have a _next property as expected
+    """
+    tempNode = Node(42)
+    assert tempNode._next is None
+
+
+def test_node_next_property_can_be_set():
+    """ Does Node have a _next property as expected
+    """
+    tempNode = Node(42)
+    newNode = Node(13, tempNode)
+    assert newNode._next == tempNode
+
+
 def test_node_str_return():
     """ Can we create a Node and see that it returns the expected result
         for str
@@ -165,3 +174,4 @@ def test_node_str_return():
     expected_a = str(input_a)
     actual_a = str(Node(input_a))
     assert expected_a == actual_a
+
