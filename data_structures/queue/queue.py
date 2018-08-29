@@ -32,6 +32,9 @@ class Queue(object):
     def __str__(self):
         return f'Front: {self.front} | Back: {self.back} | Length: {self._length}'
 
+    def __repr__(self):
+        return f'<Front: {self.front} | Back: {self.back} | Length: {self._length}>'
+
     def enqueue(self, val):
         """ Adds a node for the passed val and increments _length.
             First in, First out.
@@ -51,7 +54,7 @@ class Queue(object):
         """
         temp = self.front
         self.front = self.front._next
-        temp.next = None
+        temp._next = None
         self._length -= 1
         return temp
 

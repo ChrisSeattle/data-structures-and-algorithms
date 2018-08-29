@@ -170,13 +170,13 @@ def test_dequeue_exists():
     assert Queue.dequeue
 
 
-def test_dequeue_returns_val_of_front(small_q):
+def test_dequeue_returns_a_node(small_q):
     """ when dequeue method is called, it shortens the length of the Queue
-        and returns the value that was stored at the front position.
+        and returns the node from the front position
     """
-    expected = Node(4)
-    actual = small_q.dequeue
-    assert actual == expected
+    output = small_q.dequeue()
+    assert isinstance(output, Node)
+    # assert output.val == 4
 
 
 def test_dequeue_modifies_length(small_q):
@@ -184,7 +184,7 @@ def test_dequeue_modifies_length(small_q):
         and returns the value that was stored at the front position.
     """
     expected_length = len(small_q) - 1
-    small_q.dequeue
+    output = small_q.dequeue()
     actual_length = len(small_q)
     assert expected_length == actual_length
 

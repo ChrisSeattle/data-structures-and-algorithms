@@ -1,4 +1,4 @@
-from .queue_with_stacks import queue_with_stacks, Stack
+from .stack import Stack, Node
 import pytest
 
 
@@ -10,8 +10,7 @@ def test_alive():
 
 @pytest.fixture
 def empty_stack():
-    return Stack([])
-
+    return Stack()
 
 @pytest.fixture
 def small_stack():
@@ -67,6 +66,24 @@ def test_stack_push_increases_stack_size(empty_stack):
     assert len(empty_stack) == expected
 
 
+def test_stack_push_continues_to_add_multiple_nodes(empty_stack):
+    """ Multiple calls to to push method continues to add elements & increment length
+    """
+    expected = len(empty_stack) + 4
+    empty_stack.push(42)
+    empty_stack.push(13)
+    empty_stack.push(7)
+    empty_stack.push(314)
+    assert len(empty_stack) == expected
+    assert empty_stack.top.val == 314
+
+
+def test_small_stack_is_valid_stack(small_stack):
+    """ We are depending on small_stack, so let's make sure it is a stack data structure
+    """
+    assert isinstance(small_stack, Stack)
+
+
 def test_can_instantiate_stack_with_list(small_stack):
     """ Instantiate with a list of four items. Does it report the correct len
         and is the last one added now at the top.
@@ -75,9 +92,9 @@ def test_can_instantiate_stack_with_list(small_stack):
     assert small_stack.top.val == 4
 
 
-def test_insertion_for_each_element_in_iterable_tuple():
+def test_declaration_for_each_element_in_iterable_tuple():
     """ If the Stack is instantiated with a tuple, does it
-        add a node for each element?
+        add a node for each element with last value as top.
     """
     bb = Stack((1, 2, 3))
     assert len(bb) == 3
@@ -103,12 +120,9 @@ def test_stack_pop_returns_val_of_top(small_stack):
     """ when pop method is called, it shortens the length of the Stack
         and returns the value that was stored at the top position.
     """
-    st = Stack((1, 2, 3, 4, 5))
-    target = st.pop
-    # assert len(st) == 5
-    assert target == 5
-    # assert len(st) == 4
-    assert small_stack.pop == 4
+    input = 4
+    output = small_stack.pop().val
+    assert input == output
 
 
 def test_stack_pop_modifies_length(small_stack):
@@ -116,7 +130,7 @@ def test_stack_pop_modifies_length(small_stack):
         and returns the value that was stored at the top position.
     """
     expected_length = len(small_stack) - 1
-    small_stack.pop
+    small_stack.pop()
     actual_length = len(small_stack)
     assert expected_length == actual_length
 
@@ -130,14 +144,16 @@ def test_stack_peek_exists():
 def test_stack_peek_returns_current_top(small_stack):
     """ peek returns the current top without modifying the stack
     """
-    assert small_stack.peek == 4
+    val = small_stack.top.val
+    assert val == 4
+    assert small_stack.peek().val == val
 
 
 def test_stack_peek_does_not_change_length(small_stack):
     """ peek returns the current top without modifying the stack
     """
     expected_length = len(small_stack)
-    small_stack.peek
+    small_stack.peek()
     assert expected_length == len(small_stack)
 
 
@@ -157,6 +173,21 @@ def test_node_holds_expected_values():
     assert expected_b == actual_b
 
 
+def test_node_has_expected_next_property_defaults_none():
+    """ Does Node have a _next property as expected
+    """
+    tempNode = Node(42)
+    assert tempNode._next is None
+
+
+def test_node_next_property_can_be_set():
+    """ Does Node have a _next property as expected
+    """
+    tempNode = Node(42)
+    newNode = Node(13, tempNode)
+    assert newNode._next == tempNode
+
+
 def test_node_str_return():
     """ Can we create a Node and see that it returns the expected result
         for str
@@ -165,3 +196,4 @@ def test_node_str_return():
     expected_a = str(input_a)
     actual_a = str(Node(input_a))
     assert expected_a == actual_a
+

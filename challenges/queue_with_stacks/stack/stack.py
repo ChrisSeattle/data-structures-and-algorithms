@@ -8,23 +8,23 @@ class Stack(object):
         for each value in the iterable.
         The 'len' represents the count of Nodes in the stack at any time.
     """
-    def __init__(self, data):
+    def __init__(self, data=None):
         """ Initialize with a None value for top, and _length of 0,
             if no data is passed on instantiating.
             If instantiated with data, create a Node for each iterable value
         """
         self.top: Node = None
         self._length: int = 0
-        try:
-            vals = iter(data)
-        except TypeError:
-            vals = [data]
-        for i in vals:
-            current = self.top
-            newNode = Node(i, _next=current)
-            self.top = newNode
-            self._length += 1
-            # print(f'new top is now {self.top.val}, length is {self._length}')
+        if data is not None:
+            try:
+                vals = iter(data)
+            except TypeError:
+                vals = [data]
+            for i in vals:
+                current = self.top
+                newNode = Node(i, _next=current)
+                self.top = newNode
+                self._length += 1
 
     def __len__(self):
         return self._length
@@ -44,16 +44,12 @@ class Stack(object):
     def pop(self):
         """ Removes and returns the Node currently at the top of the stack
         """
-        print('we want to pop!')
         if self._length == 0:
             return f'The stack has no values'
-        current = self.top
-        val = current.val
-        new = current._next.val
-        print(val, new)
-        self.top = current._next
-        self._length -= 1
-        return val
+        temp = self.top
+        self.top = self.top._next
+        temp.next = None
+        return temp
 
     def peek(self):
         """ Reports the top of the stack, but does not change the stack

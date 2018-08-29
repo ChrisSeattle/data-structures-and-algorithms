@@ -10,7 +10,7 @@ def test_alive():
 
 @pytest.fixture
 def empty_stack():
-    return Stack([])
+    return Stack()
 
 @pytest.fixture
 def small_stack():

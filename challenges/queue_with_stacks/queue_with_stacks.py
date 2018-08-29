@@ -1,15 +1,19 @@
-# from textwrap import dedent
-# import sys
+
+from .stack.stack import Stack, Node
+# It would be nicer to import from data_structures
 
 
-# DECLARE_CONSTANT_LISTS = []
-# DECLARE_CONSTANT_STRINGS = ''
-# DECLARE_CONSTANT_DICTIONARY = {}
-# DECLARE_CONSTANT_SETS = set()
+class Queue(object):
+    """ Implementation of a Queue using two Stacks.
+    """
+    def enqueue(self, value):
+        """ Inserts the value into the Queue using first-in, first-out approach
+        """
+        pass
+
+    def dequeue(self):
+        """ Extracts a value from the Queue using a first-in, first-out approach
+        """
+        pass
 
 
-class ():
-
-
-# if __name__ == '__main__':
-#     run()
