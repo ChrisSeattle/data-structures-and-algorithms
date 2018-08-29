@@ -1,15 +1,15 @@
 ### Features Checklist
 
-- [ ] enqueue(value) which inserts value into the Queue using a first-in, first-out approach.
-- [ ] dequeue() which extracts a value from the Queue using a first-in, first-out approach.
+- [x] enqueue(value) which inserts value into the Queue using a first-in, first-out approach.
+- [x] dequeue() which extracts a value from the Queue using a first-in, first-out approach.
         You have access to 2 Stack instances with push and pop methods.
 - [x] Created and working in a branch titled as the challenge name
 - [x] Created a directory named according to the challenge name, import all starter files
-- [ ] Whiteboard image placed in /assests directory with name matching the challenge
+- [x] Whiteboard image placed in /assests directory with name matching the challenge
 - [x] Function name labeled according to instructions
 - [x] Prepare Checklist to use with assignment completion
-- [ ] Write at least 3 test assertions
-- [ ] Ensure code is passing all tests
-- [ ] Include any language-specific configuration files required for this challenge to become an individual component, module, library, etc.
+- [x] Write at least 3 test assertions
+- [x] Ensure code is passing all tests
+- [x] Include any language-specific configuration files required for this challenge to become an individual component, module, library, etc.
 - [x] Update challenge Readme file with accurate info.
 - [x] Update main repo Readme file with accurate info.
