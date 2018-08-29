@@ -12,5 +12,9 @@ dequeue() which extracts a value from the Queue using a first-in, first-out appr
 
 ![Whiteboard Image](../../assets/queue_with_stacks.jpg)
 
+Originally J and I misunderstood the challenge. The following is what we did initially.
+
+![Whiteboard Image 2](../../assets/queue_with_stacks_first.jpg)
+
 **Author**: Chris L Chapman
 **Whiteboard Contributors**  J Christie
