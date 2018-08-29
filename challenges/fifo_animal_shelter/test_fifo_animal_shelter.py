@@ -1,5 +1,4 @@
-from ... data_structures.queue import Queue, Node
-from .fifo_animal_shelter import Queue, Node, AnimalShelter
+from .fifo_animal_shelter import Queue, Node, Animal, AnimalShelter
 import pytest
 
 
@@ -9,14 +8,16 @@ def test_alive():
     pass
 
 
-@pytest.fixture
-def empty_q():
-    return Queue()
+def test_animal_exists():
+    """ Do we see Animal
+    """
+    assert Animal
 
-@pytest.fixture
-def small_q():
-    q = Queue([1, 2, 3, 4])
-    return q
+
+def test_animal_shelter():
+    """ Do we see AnimalShelter
+    """
+    assert AnimalShelter
 
 
 def test_queue_exists():
@@ -25,208 +26,122 @@ def test_queue_exists():
     assert Queue
 
 
-def test_create_instance_of_queue(empty_q):
+@pytest.fixture
+def empty_q():
+    return AnimalShelter()
+
+@pytest.fixture
+def short_set():
+    first = Animal('first_pet', 'dog')
+    second = Animal('dog_also_second', 'dog')
+    third = Animal('cat_come_in_third', 'cat')
+    fourth = Animal('dog_is_fourth', 'dog')
+    fifth = Animal('cat_for_fifth', 'cat')
+    a = AnimalShelter()
+    a.enqueue(first)
+    a.enqueue(second)
+    a.enqueue(third)
+    a.enqueue(fourth)
+    a.enqueue(fifth)
+    return a
+
+
+def test_create_instance_of_animal_shelter(empty_q):
     """ can we create a Queue instance with no input values
     """
-    assert isinstance(empty_q, Queue)
+    assert isinstance(empty_q, AnimalShelter)
 
 
-def test_queue_default_property(empty_q):
+def test_animal_shelter_default_property(empty_q):
     """ Do the default settings work as expected
     """
     assert empty_q.front is None
     assert empty_q.back is None
+    assert isinstance(empty_q.dogs, Queue)
+    assert isinstance(empty_q.cats, Queue)
     assert empty_q._length == 0
+    assert empty_q.tag == 0
 
 
-def test_queue_str_format_on_empty(empty_q):
-    """ Do we get the expected str return on empty queue
+def test_shelter_str_format_on_empty(empty_q):
+    """ Do we get the expected str return on empty shelter
     """
-    expected = 'Front: None | Back: None | Length: 0'
+    expected = 'Total Tagged Animals: 0 | Sheltered Animals: 0'
     actual = str(empty_q)
     assert expected == actual
 
 
-def test_queue_enqueue_exists():
-    """ Is the enqueue method present in the Queue constructor
+def test_animal_shelter_enqueue_exists():
+    """ Is the enqueue method present in the AnimalShelter constructor
     """
-    assert Queue.enqueue
+    assert AnimalShelter.enqueue
 
 
-def test_queue_add_first_val_successful(empty_q):
-    """ Can we insert a single value and see the value in the front position
+def test_add_dog_successful(empty_q):
+    """ Can we insert a single Animal object with pet_type of 'dog'
+        and see the value in the front position
     """
-    empty_q.enqueue(42)
-    assert empty_q.front.val == 42
+    fluffy = Animal('Fluffy', 'dog')
+    empty_q.enqueue(fluffy)
+    assert empty_q.dogs.front.val.pet_name == 'Fluffy'
+    assert empty_q.dogs.front.val.tag == 1
     assert len(empty_q) == 1
+    assert len(empty_q.dogs) == 1
 
 
-def test_queue_add_second_val_successful(empty_q):
-    """ Can we insert a single value and see the value in the front position
+def test_add_cat_successful(empty_q):
+    """ Can we insert a single Animal object with pet_type of 'cat'
+        and see the value in the front position
     """
-    empty_q.enqueue(42)
-    empty_q.enqueue(13)
-    assert empty_q.front.val == 42
-    assert empty_q.back.val == 13
+    scratchy = Animal('Scratchy', 'cat')
+    empty_q.enqueue(scratchy)
+    assert empty_q.cats.front.val.pet_name == 'Scratchy'
+    assert empty_q.cats.front.val.tag == 1
+    assert len(empty_q) == 1
+    assert len(empty_q.cats) == 1
 
 
-def test_queue_add_third_val_successful(empty_q):
-    """ Can we insert a single value and see the value in the front position
+def test_add_cat__and_dog_successful(empty_q):
+    """ Can we insert two Animal objects with each pet_type
+        and see the correct value in the front position
     """
-    empty_q.enqueue(42)
-    empty_q.enqueue(13)
-    empty_q.enqueue(7)
-    assert empty_q.front.val == 42
-    assert empty_q.back.val == 7
-
-
-def test_queue_enque_increases_queue_size(empty_q):
-    """ After a value is put into the queue, does length of queue increment
-    """
-    expected = len(empty_q) + 1
-    empty_q.enqueue(42)
-    assert len(empty_q) == expected
-
-
-def test_enqueue_continues_to_add_multiple_nodes(empty_q):
-    """ Multiple calls to to enqueue method continues to add elements & increment length
-    """
-    expected = len(empty_q) + 4
-    empty_q.enqueue(42)
-    empty_q.enqueue(13)
-    empty_q.enqueue(7)
-    empty_q.enqueue(314)
-    assert len(empty_q) == expected
-
-
-def test_small_q_is_valid_queue(small_q):
-    """ We are depending on small_q, so let's make sure it is a Queue data structure
-    """
-    assert isinstance(small_q, Queue)
-
-
-def test_can_instantiate_queue_with_list(small_q):
-    """ Instantiate with a list of four items. Does it report the correct len
-        Is first one at the front and the last one added now at the back.
-    """
-    assert len(small_q) == 4
-    assert small_q.front.val == 1
-    assert small_q.back.val == 4
-
-
-def test_declaration_for_each_element_in_iterable_tuple():
-    """ If the queue is instantiated with a tuple, does it
-        add a node for each element with last value as top.
-    """
-    bb = Queue((1, 2, 3))
-    assert len(bb) == 3
-    assert bb.back.val == 3
-    assert bb.front.val == 1
-
-
-def test_queue_str_format_on_one_element(empty_q):
-    """ Do we get the expected str return when queue has 1 Node with a value
-    """
-    q = Queue(42)
-    expected = 'Front: 42 | Back: None | Length: 1'
-    actual = str(q)
-    assert expected == actual
-    qq = empty_q
-    qq.enqueue(42)
-    actual = str(qq)
-    assert expected == actual
-
-
-def test_queue_str_format_on_two_element(empty_q):
-    """ Do we get the expected str return when Queue has 2 Nodes with a value
-    """
-    q = Queue((42, 13))
-    expected = 'Front: 42 | Back: 13 | Length: 2'
-    actual = str(q)
-    assert expected == actual
-    qq = empty_q
-    qq.enqueue(42)
-    qq.enqueue(13)
-    actual = str(qq)
-    assert expected == actual
-
-
-def test_queue_str_format_on_three_element(empty_q):
-    """ Do we get the expected str return when Queue has 3 Nodes with a value
-    """
-    q = Queue([42, 13, 7])
-    expected = 'Front: 42 | Back: 7 | Length: 3'
-    actual = str(q)
-    assert expected == actual
-    empty_q.enqueue(42)
-    empty_q.enqueue(13)
-    empty_q.enqueue(7)
-    actual = str(empty_q)
-    assert expected == actual
+    scratchy = Animal('Scratchy', 'cat')
+    fluffy = Animal('Fluffy', 'dog')
+    empty_q.enqueue(scratchy)
+    empty_q.enqueue(fluffy)
+    assert empty_q.cats.front.val.pet_name == 'Scratchy'
+    assert empty_q.dogs.front.val.pet_name == 'Fluffy'
+    assert empty_q.cats.front.val.tag == 1
+    assert empty_q.dogs.front.val.tag == 2
+    assert len(empty_q) == 2
 
 
 def test_dequeue_exists():
-    """ Is the enqueue method present in the enqueue constructor
+    """ can se see dequeue for AnimalShelter
     """
-    assert Queue.dequeue
+    assert AnimalShelter.dequeue
 
 
-def test_dequeue_returns_a_node(small_q):
-    """ when dequeue method is called, it shortens the length of the Queue
-        and returns the node from the front position
+def test_dequeue_cat(short_set):
+    """ if user wants a cat, does the shelter give a cat
     """
-    output = small_q.dequeue()
-    assert isinstance(output, Node)
-    # assert output.val == 4
+    adopt = short_set.dequeue('cat').val
+    assert adopt.pet_type == 'cat'
 
 
-def test_dequeue_modifies_length(small_q):
-    """ when dequeue method is called, it shortens the length of the Queue
-        and returns the value that was stored at the front position.
+def test_dequeue_dog(short_set):
+    """ if the user wants a dog, does the shelter give a dog
     """
-    expected_length = len(small_q) - 1
-    output = small_q.dequeue()
-    actual_length = len(small_q)
-    assert expected_length == actual_length
+    adopt = short_set.dequeue('dog').val
+    assert adopt.pet_type == 'dog'
 
-
-def test_node_exists():
-    """ Can we see Node
+def test_dequeue_any(short_set):
+    """ if the user requests any, does the shelter give the first in
     """
-    assert Node
+    dog_tag = short_set.dogs.front.val.tag
+    cat_tag = short_set.cats.front.val.tag
+    tag = min(dog_tag, cat_tag)
+    adopt = short_set.dequeue('any').val
+    assert adopt.tag == tag
 
-
-def test_node_holds_expected_values():
-    """ Can we create a Node and see that it the value we passed to it
-        is returned as expected by the Node
-    """
-    input_b = 42
-    expected_b = str(input_b)
-    actual_b = str(Node(input_b))
-    assert expected_b == actual_b
-
-
-def test_node_has_expected_next_property_defaults_none():
-    """ Does Node have a _next property as expected
-    """
-    tempNode = Node(42)
-    assert tempNode._next is None
-
-
-def test_node_next_property_can_be_set():
-    """ Does Node have a _next property as expected
-    """
-    tempNode = Node(42)
-    newNode = Node(13, tempNode)
-    assert newNode._next == tempNode
-
-
-def test_node_str_return():
-    """ Can we create a Node and see that it returns the expected result
-        for str
-    """
-    input_a = 13
-    expected_a = str(input_a)
-    actual_a = str(Node(input_a))
-    assert expected_a == actual_a
 
