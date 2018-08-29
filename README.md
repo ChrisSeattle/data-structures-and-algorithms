@@ -28,4 +28,5 @@ pipenv install pytest
     - [ll_kth_from_end](./challenges/ll_kth_from_end)
     - [ll_merge](./challenges/ll_merge)
     - [queue_with_stacks](./challenges/queue_with_stacks)
+    - [fifo_animal_shelter](./challenges/fifo_animal_shelter)
     <!-- - [branch_name](./challenges/branch_name) -->
