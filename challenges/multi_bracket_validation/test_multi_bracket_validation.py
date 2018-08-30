@@ -1,7 +1,6 @@
-# from .multi_bracket_validation import multi_bracket_validation
-from ... data_structures.stack.stack import Stack
 from .multi_bracket_validation import multi_bracket_validation
-
+# from .multi_bracket_validation import multi_bracket_validation
+# from ... data_structures.stack.stack import Stack
 import pytest
 
 
@@ -28,14 +27,14 @@ def test_multi_bracket_validation_passes_sibling_brackets():
     """ The validation should work if ther are sibling brackets
     """
     b = 'this (is [some] {input that} [should] also)()pass'
-    assert multi_bracket_validation(a)
+    assert multi_bracket_validation(b)
 
 
 def test_multi_bracket_validation_false_for_overlapping():
     """ If the brackets overlap, we should get a False return
     """
     c = '(Oops[sometimes] [there {is] accidental} overlap)'
-    assert multi_bracket_validation(a) is False
+    assert multi_bracket_validation(c) is False
 
 
 def test_multi_bracket_validation_false_for_unfinished():
