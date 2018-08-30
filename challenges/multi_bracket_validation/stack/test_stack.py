@@ -147,7 +147,7 @@ def test_stack_peek_returns_current_top(small_stack):
     """
     val = small_stack.top.val
     assert val == 4
-    assert small_stack.peek().val == val
+    assert small_stack.peek() == val
 
 
 def test_stack_peek_does_not_change_length(small_stack):

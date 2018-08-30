@@ -1,5 +1,6 @@
-# from stack.stack import Stack
-from ... data_structures.stack.stack import Stack
+from .stack.stack import Stack, Node
+# from ... data_structures.stack.stack import Stack
+# does the above not work?
 
 
 def multi_bracket_validation(input):
