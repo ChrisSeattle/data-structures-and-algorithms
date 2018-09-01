@@ -1,0 +1,26 @@
+### Pull Request Checklist
+
+Features
+- [x] Create a Class for a Node which is aware of the value as val and left and right children as left and right respectively
+- [x] Ensure that you have a __repr__ and __str__ method defined to return appropriate representations of the node
+- [x] Create a Class for a BST, which is aware of the root of the tree as root
+- [x] Ensure that you have a __repr__ and __str__ method defined to return appropriate representations of the tree
+- [x] This class should accept an iterable as an argument when initialized, such as [20, 18, 12, 19, 11, 14, 40, 31, 22, 33], which creates a tree from that argument
+- [x] This class should be aware of depth-first traversal methods for in_order, pre_order, and post_order traversals
+- [x] This class should have the ability to insert a new node into the tree. Your insertion should follow an O(log n) search solution to find the correct place for inserting the new node.
+Testing
+- [ ] You are required to maintain an 80% or better coverage benchmark in your test suite.
+- [ ] Start by focusing on three different tests/assertions for each method that you create, including the initial class definition.
+- [ ] One assertion should validate successful functionality
+- [ ] One assertion should validate failure functionality
+- [ ] One assertion should validate an edge case
+General
+- [x] Created and working in a branch titled as the challenge name
+- [x] Created a directory named according to the challenge name, import all starter files
+- [x] Whiteboard image placed in /assests directory with name matching the challenge
+- [x] Function name labeled according to instructions
+- [x] Prepare Checklist to use with assignment completion
+- [ ] Write at least 3 test assertions
+- [ ] Ensure code is passing 80% of all tests
+- [x] Update challenge Readme file with accurate info.
+- [x] Update main repo Readme file with accurate info.
