@@ -20,4 +20,4 @@ This class should have the ability to insert a new node into the tree. Your inse
 ![Whiteboard Image](../../assets/binary_search_tree.jpg)
 
 **Author**: Chris L Chapman
-**Whiteboard Contributors**
+**Whiteboard Contributors** Max McFarland

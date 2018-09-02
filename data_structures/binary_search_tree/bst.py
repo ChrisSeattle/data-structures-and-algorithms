@@ -31,18 +31,15 @@ class BinaryTree(object):
                 self.insert(i)
 
     def __str__(self):
-        return f'BinaryTree | Root: {self.root} | Left: {self.left} | Right: {self.right}'
+        return f'BinaryTree | Root: {self.root}'
 
     def __repr__(self):
-        return f'<BinaryTree | Root: {self.root} | in_order: {self.in_order} | pre_order: {self.pre_order} | post_order: {self.post_order}>'
+        return f'<BinaryTree | Root: {self.root}>'
 
     def insert(self, val):
         """ Insert new value at appropriate tree location (but not self-correcting)
             Insert with O(log n)
         """
-        if self.root.val is None:
-            self.root = Node(val)
-
         def _walk(curr, val):
             """ This recursive helper function will drill down to an insertion point
                 Returns True if we were able to insert, False if we have a duplicate val
@@ -51,18 +48,21 @@ class BinaryTree(object):
                 if curr.left is None:
                     curr.left = Node(val)
                     return True
-                _walk(curr.left, val)
+                return _walk(curr.left, val)
             if val > curr.val:
                 if curr.right is None:
                     curr.right = Node(val)
                     return True
-                _walk(curr.right, val)
+                return _walk(curr.right, val)
             else:
-                return False
+                raise ValueError(f'Neither < or > for {val}, {curr.val}')
+                # return False
 
-        success = _walk(self.root, val)
-        if success is False:
-            return 'Duplicate Insert Error'
+        if self.root is None:
+            self.root = Node(val)
+            return True
+        _walk(self.root, val)
+    # end of insert method
 
     def in_order(self, callable=lambda node: print(node)):
         """ Go left, visit, then go right
@@ -94,7 +94,6 @@ class BinaryTree(object):
             # Go Right
             if node.right is not None:
                 _walk(node.right)
-
         _walk(self.root)
 
     def post_order(self, callable=lambda node: print(node)):
@@ -111,5 +110,4 @@ class BinaryTree(object):
                 _walk(node.right)
             # Visit
             callable(node)
-
         _walk(self.root)

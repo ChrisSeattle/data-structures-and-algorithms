@@ -9,18 +9,18 @@ Features
 - [x] This class should be aware of depth-first traversal methods for in_order, pre_order, and post_order traversals
 - [x] This class should have the ability to insert a new node into the tree. Your insertion should follow an O(log n) search solution to find the correct place for inserting the new node.
 Testing
-- [ ] You are required to maintain an 80% or better coverage benchmark in your test suite.
-- [ ] Start by focusing on three different tests/assertions for each method that you create, including the initial class definition.
-- [ ] One assertion should validate successful functionality
-- [ ] One assertion should validate failure functionality
-- [ ] One assertion should validate an edge case
+- [x] You are required to maintain an 80% or better coverage benchmark in your test suite.
+- [x] Start by focusing on three different tests/assertions for each method that you create, including the initial class definition.
+- [x] One assertion should validate successful functionality
+- [x] One assertion should validate failure functionality
+- [x] One assertion should validate an edge case
 General
 - [x] Created and working in a branch titled as the challenge name
 - [x] Created a directory named according to the challenge name, import all starter files
 - [x] Whiteboard image placed in /assests directory with name matching the challenge
 - [x] Function name labeled according to instructions
 - [x] Prepare Checklist to use with assignment completion
-- [ ] Write at least 3 test assertions
-- [ ] Ensure code is passing 80% of all tests
+- [x] Write at least 3 test assertions
+- [x] Ensure code is passing 80% of all tests
 - [x] Update challenge Readme file with accurate info.
 - [x] Update main repo Readme file with accurate info.
