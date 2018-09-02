@@ -39,7 +39,7 @@ class Stack(object):
         newNode = Node(val, _next=self.top)
         self.top = newNode
         self._length += 1
-        return f'Added {val} to the top of the stack'
+        return newNode
 
     def pop(self):
         """ Removes and returns the Node currently at the top of the stack
@@ -49,9 +49,10 @@ class Stack(object):
         temp = self.top
         self.top = self.top._next
         temp.next = None
+        self._length -= 1
         return temp
 
     def peek(self):
         """ Reports the top of the stack, but does not change the stack
         """
-        return self.top
+        return self.top.val

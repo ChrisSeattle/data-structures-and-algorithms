@@ -103,11 +103,9 @@ def test_stack_pop_returns_val_of_top(small_stack):
         and returns the value that was stored at the top position.
     """
     st = Stack((1, 2, 3, 4, 5))
-    target = st.pop
-    # assert len(st) == 5
-    assert target == 5
-    # assert len(st) == 4
-    assert small_stack.pop == 4
+    target = st.pop()
+    assert str(target) == str(5)
+    assert str(small_stack.pop()) == str(4)
 
 
 def test_stack_pop_modifies_length(small_stack):
@@ -115,7 +113,7 @@ def test_stack_pop_modifies_length(small_stack):
         and returns the value that was stored at the top position.
     """
     expected_length = len(small_stack) - 1
-    small_stack.pop
+    small_stack.pop()
     actual_length = len(small_stack)
     assert expected_length == actual_length
 
@@ -129,14 +127,14 @@ def test_stack_peek_exists():
 def test_stack_peek_returns_current_top(small_stack):
     """ peek returns the current top without modifying the stack
     """
-    assert small_stack.peek == 4
+    assert small_stack.peek() == 4
 
 
 def test_stack_peek_does_not_change_length(small_stack):
     """ peek returns the current top without modifying the stack
     """
     expected_length = len(small_stack)
-    small_stack.peek
+    small_stack.peek()
     assert expected_length == len(small_stack)
 
 
