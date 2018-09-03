@@ -196,4 +196,3 @@ def test_node_str_return():
     expected_a = str(input_a)
     actual_a = str(Node(input_a))
     assert expected_a == actual_a
-

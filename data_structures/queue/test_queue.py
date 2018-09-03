@@ -12,6 +12,7 @@ def test_alive():
 def empty_q():
     return Queue()
 
+
 @pytest.fixture
 def small_q():
     q = Queue([1, 2, 3, 4])
@@ -88,7 +89,7 @@ def test_queue_enque_increases_queue_size(empty_q):
 
 
 def test_enqueue_continues_to_add_multiple_nodes(empty_q):
-    """ Multiple calls to to enqueue method continues to add elements & increment length
+    """ Multiple calls to to enqueue method add elements & increment length
     """
     expected = len(empty_q) + 4
     empty_q.enqueue(42)
@@ -99,7 +100,7 @@ def test_enqueue_continues_to_add_multiple_nodes(empty_q):
 
 
 def test_small_q_is_valid_queue(small_q):
-    """ We are depending on small_q, so let's make sure it is a Queue data structure
+    """ We are depending on small_q, so let's make sure it's a Queue data structure
     """
     assert isinstance(small_q, Queue)
 
@@ -127,7 +128,7 @@ def test_queue_str_format_on_one_element(empty_q):
     """ Do we get the expected str return when queue has 1 Node with a value
     """
     q = Queue(42)
-    expected = 'Front: 42 | Back: None | Length: 1'
+    expected = 'Front: 42 | Back: 42 | Length: 1'
     actual = str(q)
     assert expected == actual
     qq = empty_q
@@ -184,7 +185,7 @@ def test_dequeue_modifies_length(small_q):
         and returns the value that was stored at the front position.
     """
     expected_length = len(small_q) - 1
-    output = small_q.dequeue()
+    small_q.dequeue()
     actual_length = len(small_q)
     assert expected_length == actual_length
 
@@ -228,4 +229,3 @@ def test_node_str_return():
     expected_a = str(input_a)
     actual_a = str(Node(input_a))
     assert expected_a == actual_a
-

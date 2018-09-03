@@ -1,6 +1,7 @@
 from .node import Node
 from typing import Any
 
+
 class Queue(object):
     """
     """
@@ -19,8 +20,8 @@ class Queue(object):
             for i in vals:
                 newNode = Node(i)
                 if self.front is None:  # this is the first node in queue
-                    self.front = newNode
-                elif self.back is None:  # this is the second node in queue
+                    self.front, self.back = newNode, newNode
+                elif self.back is self.front:  # this is the second node
                     self.front._next, self.back = newNode, newNode
                 else:
                     self.back._next, self.back = newNode, newNode
@@ -41,8 +42,8 @@ class Queue(object):
         """
         newNode = Node(val)
         if self.front is None:  # this is the first node in queue
-            self.front = newNode
-        elif self.back is None:  # this is the second node in queue
+            self.front, self.back = newNode, newNode
+        elif self.back is self.front:  # this is the second node
             self.front._next, self.back = newNode, newNode
         else:
             self.back._next, self.back = newNode, newNode
