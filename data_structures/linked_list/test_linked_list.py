@@ -38,7 +38,7 @@ def test_create_instance_of_list(empty_list):
 def test_default_property_head(empty_list):
     """ Do the default settings work as expected
     """
-    assert empty_list.head == None
+    assert empty_list.head is None
     assert empty_list._length == 0
 
 
@@ -85,7 +85,7 @@ def test_insertion_for_each_element_input_list(empty_list):
     """ If the insert function recieves an iterable list, does the LinkedList add
         a node for each element in that list
     """
-    a = [5,6,7,8]
+    a = [5, 6, 7, 8]
     empty_list.insert(a)
     assert len(empty_list) == len(a)
 
@@ -117,16 +117,11 @@ def test_linked_list_includes_all_insert_elements():
     """ Is the includes method able to identify if a the value is in the LinkedList
         for all values that we had put in the list (only a lift of a few elements tested)
     """
-    a = [5,6,7,8]
+    a = [5, 6, 7, 8]
     aa = LinkedList([])
     aa.insert(a)
     for i in a:
         assert aa.includes(i) is True
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 4200f89307865023004a4dc117de662123105636
     assert len(aa) == len(a)
 
 
@@ -139,14 +134,10 @@ def test_linked_list_instantiates_with_list_input():
     """ Can we instantiate a LinkedList and pass it an iterable input such that
         for each element a node is created to store that value
     """
-    a = [5,6,7,8]
+    a = [5, 6, 7, 8]
     aa = LinkedList(a)
     for i in a:
         assert aa.includes(i) is True
-<<<<<<< HEAD
->>>>>>> ee6330cff13d5e1b1b51d69e4dc660e9fa7896f9
-=======
->>>>>>> 4200f89307865023004a4dc117de662123105636
     assert len(aa) == len(a)
 
 
@@ -195,5 +186,3 @@ def test_node_repr_return():
     expected = f'<Node | Val: {input} | Next: None>'
     actual = repr(Node(input))
     assert expected == actual
-
-
