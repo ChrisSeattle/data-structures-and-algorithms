@@ -1,0 +1,197 @@
+# from .queue.queue import Queue, Node
+
+
+class Node(object):
+    """ Node used in Binary tree. Is aware of a left and a right
+        for following Nodes, holds a value and data.
+    """
+    def __init__(self, val, data=None, left=None, right=None):
+        self.val = val
+        self.data = data
+        self.left = left
+        self.right = right
+
+    def __str__(self):
+        return f'{self.val}'
+
+    def __repr__(self):
+        return f'<Node | Val: {self.val} | Data: {self.data} | Left: {self.left} | Right: {self.right}>'
+
+
+class Queue(object):
+    """
+    """
+    def __init__(self, data=None):
+        """ Initialize Queue with front & back set to None and _length of 0, if no data passed
+            If initialized with data, creating add a Node in the Queue for each value in the iterable.
+        """
+        self.front: Node = None
+        self.back: Node = None
+        self._length: int = 0
+        if data is not None:
+            try:
+                vals = iter(data)
+            except TypeError:
+                vals = [data]
+            for i in vals:
+                newNode = Node(i)
+                if self.front is None:  # this is the first node in queue
+                    self.front, self.back = newNode, newNode
+                elif self.back is self.front:  # this is the second node
+                    self.front._next, self.back = newNode, newNode
+                else:
+                    self.back._next, self.back = newNode, newNode
+                self._length += 1
+
+    def __len__(self):
+        return self._length
+
+    def __str__(self):
+        return f'Front: {self.front} | Back: {self.back} | Length: {self._length}'
+
+    def __repr__(self):
+        return f'<Front: {self.front} | Back: {self.back} | Length: {self._length}>'
+
+    def enqueue(self, val):
+        """ Adds a node for the passed val and increments _length.
+            First in, First out.
+        """
+        newNode = Node(val)
+        if self.front is None:  # this is the first node in queue
+            self.front, self.back = newNode, newNode
+        elif self.back is self.front:  # this is the second node
+            self.front._next, self.back = newNode, newNode
+        else:
+            self.back._next, self.back = newNode, newNode
+        self._length += 1
+
+    def dequeue(self):
+        """ Returns the node that is in the front of the queue.
+            Removes it from the queue and deincrements the _length
+        """
+        temp = self.front
+        self.front = self.front._next
+        temp._next = None
+        self._length -= 1
+        return temp
+
+    def peek(self):
+        return self.front
+
+
+class BinaryTree(object):
+    """ Accepts an iterable object and makes a node for each value
+        From this data it creates a tree.
+    """
+    def __init__(self, iterable=None):
+        self.root = None
+        if iterable is not None:
+            try:
+                iterable = iter(iterable)
+            except TypeError:
+                iterable = [iterable]
+            for i in iterable:
+                self.insert(i)
+
+    def __str__(self):
+        return f'BinaryTree | Root: {self.root}'
+
+    def __repr__(self):
+        return f'<BinaryTree | Root: {self.root}>'
+
+    def insert(self, val):
+        """ Insert new value at appropriate tree location (but not self-correcting)
+            Insert with O(log n)
+        """
+        def _walk(curr, val):
+            """ This recursive helper function will drill down to an insertion point
+                Returns True if we were able to insert, False if we have a duplicate val
+            """
+            if val < curr.val:
+                if curr.left is None:
+                    curr.left = Node(val)
+                    return True
+                return _walk(curr.left, val)
+            if val > curr.val:
+                if curr.right is None:
+                    curr.right = Node(val)
+                    return True
+                return _walk(curr.right, val)
+            else:
+                raise ValueError(f'Neither < or > for {val}, {curr.val}')
+                # return False
+
+        if self.root is None:
+            self.root = Node(val)
+            return True
+        _walk(self.root, val)
+    # end of insert method
+
+    def in_order(self, callable=lambda node: print(node)):
+        """ Go left, visit, then go right
+        """
+        def _walk(node=None):
+            if node is None:
+                return
+            # Go Left
+            if node.left is not None:
+                _walk(node.left)
+            # Visit
+            callable(node)
+            # Go Right
+            if node.right is not None:
+                _walk(node.right)
+        _walk(self.root)
+
+    def pre_order(self, callable=lambda node: print(node)):
+        """ Vist, Go left, then go right
+        """
+        def _walk(node=None):
+            if node is None:
+                return
+            # Visit
+            callable(node)
+            # Go Left
+            if node.left is not None:
+                _walk(node.left)
+            # Go Right
+            if node.right is not None:
+                _walk(node.right)
+        _walk(self.root)
+
+    def post_order(self, callable=lambda node: print(node)):
+        """ Go left, then go right, visit
+        """
+        def _walk(node=None):
+            if node is None:
+                return
+            # Go Left
+            if node.left is not None:
+                _walk(node.left)
+            # Go Right
+            if node.right is not None:
+                _walk(node.right)
+            # Visit
+            callable(node)
+        _walk(self.root)
+
+    def breadth_first(self):
+        """ breadth first traversal. Uses a helper function
+            called _walk and a Queue to help us view and track all
+            nodes in our binary tree. This Queue is designed to
+            accept Nodes as inputs & outputs to enqueue & dequeue
+        """
+        q = Queue()
+
+        def _walk(q):
+            if q.front.left:
+                q.enqueue(q.front.left)
+            if q.front.right:
+                q.enqueue(q.front.right)
+            print(q.dequeue)
+            if q.front is None:
+                return
+            _walk(q)
+
+        q.enqueue(self.root)
+        _walk(q)
