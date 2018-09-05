@@ -21,13 +21,6 @@ def given_list():
     return b
 
 
-@pytest.fixture
-def given_list():
-    input = [20, 18, 12, 19, 11, 14, 40, 31, 22, 33]
-    b = BinaryTree(input)
-    return b
-
-
 def test_node_exists():
     """ can we see the basic function
     """
@@ -241,8 +234,8 @@ def test_binarytree_breadth_first(given_list, capsys):
     """ do we get correct order for breadth_first
        root, row of root children, row of those children, etc
     """
-    expected = [33, 22, 14, 11, 31, 19, 12, 40, 18, 20]
-    given_list.post_order()
+    expected = [20, 18, 40, 12, 19, 31, 11, 14, 22, 33]
+    given_list.breadth_first()
     out, err = capsys.readouterr()
     actual = [int(i) for i in out.split('\n') if i != '']
     assert expected == actual

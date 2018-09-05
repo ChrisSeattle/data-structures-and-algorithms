@@ -29,6 +29,7 @@ class Queue(object):
         self.back = None
         self._length = 0
 
+
     def __len__(self):
         return self._length
 
@@ -48,6 +49,7 @@ class Queue(object):
             self.front._next, self.back = newNode, newNode
         else:
             self.back._next, self.back = newNode, newNode
+            newNode._next = None
         self._length += 1
 
     def dequeue(self):
@@ -167,13 +169,12 @@ class BinaryTree(object):
             accept Nodes as inputs & outputs to enqueue & dequeue
         """
         q = Queue()
-
         def _walk(q):
             if q.front.left:
                 q.enqueue(q.front.left)
             if q.front.right:
                 q.enqueue(q.front.right)
-            print(q.dequeue)
+            print(q.dequeue().val)
             if q.front is None:
                 return
             _walk(q)
