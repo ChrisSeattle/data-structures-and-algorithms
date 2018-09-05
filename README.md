@@ -18,7 +18,7 @@ pipenv install pytest
     - [linked_list](.data_structures/linked_list)
     - [stack](.data_structures/stack)
     - [queue](.data_structures/queue)
-    - [binary_search_tree](.data_structures/binary_search_tree)
+    - [binary_tree](.data_structures/binary_tree)
     <!-- - [branch_name](.data_structures/branch_name) -->
 
 2. Algorithms
