@@ -1,5 +1,8 @@
 ### Features Checklist
 
+- [ ] Binary Tree method for a breadth first traversal of all the nodes
+- [ ] traverse the input tree using a Breadth-first approach;
+- [ ] print every visited node’s value.
 - [x] Created and working in a branch titled as the challenge name
 - [x] Created a directory named according to the challenge name, import all starter files
 - [x] Whiteboard image placed in /assests directory with name matching the challenge

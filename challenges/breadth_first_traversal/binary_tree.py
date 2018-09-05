@@ -19,29 +19,15 @@ class Node(object):
 
 
 class Queue(object):
+    """ This Queue works with Nodes as both inputs and outputs.
     """
-    """
-    def __init__(self, data=None):
-        """ Initialize Queue with front & back set to None and _length of 0, if no data passed
-            If initialized with data, creating add a Node in the Queue for each value in the iterable.
+    def __init__(self):
+        """ Initialize Queue with front & back set to None and _length of 0.
+            This version of Queue will not take in any initital values or Nodes.
         """
-        self.front: Node = None
-        self.back: Node = None
-        self._length: int = 0
-        if data is not None:
-            try:
-                vals = iter(data)
-            except TypeError:
-                vals = [data]
-            for i in vals:
-                newNode = Node(i)
-                if self.front is None:  # this is the first node in queue
-                    self.front, self.back = newNode, newNode
-                elif self.back is self.front:  # this is the second node
-                    self.front._next, self.back = newNode, newNode
-                else:
-                    self.back._next, self.back = newNode, newNode
-                self._length += 1
+        self.front = None
+        self.back = None
+        self._length = 0
 
     def __len__(self):
         return self._length
@@ -52,11 +38,10 @@ class Queue(object):
     def __repr__(self):
         return f'<Front: {self.front} | Back: {self.back} | Length: {self._length}>'
 
-    def enqueue(self, val):
+    def enqueue(self, newNode):
         """ Adds a node for the passed val and increments _length.
             First in, First out.
         """
-        newNode = Node(val)
         if self.front is None:  # this is the first node in queue
             self.front, self.back = newNode, newNode
         elif self.back is self.front:  # this is the second node
