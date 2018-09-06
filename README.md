@@ -31,4 +31,5 @@ pipenv install pytest
     - [queue_with_stacks](./challenges/queue_with_stacks)
     - [fifo_animal_shelter](./challenges/fifo_animal_shelter)
     - [multi-bracket-validation](./challenges/multi-bracket-validation)
+    - [find_maximum_value_binary_tree](./challenges/find_maximum_value_binary_tree)
     <!-- - [branch_name](./challenges/branch_name) -->
