@@ -1,0 +1,14 @@
+### Features Checklist
+
+- [x] function named find_maximum_value
+- [x] find_maximum_value takes binary tree as its only input.
+- [x] this function returns the maximum value in tree (assume all numeric) stored in the tree.
+- [x] Created and working in a branch titled as the challenge name
+- [x] Created a directory named according to the challenge name, import all starter files
+- [x] Whiteboard image placed in /assests directory with name matching the challenge
+- [x] Function name labeled according to instructions
+- [x] Prepare Checklist to use with assignment completion
+- [x] Write at least 3 test assertions
+- [x] Ensure code is passing all tests
+- [x] Update challenge Readme file with accurate info.
+- [x] Update main repo Readme file with accurate info.
