@@ -141,10 +141,9 @@ def test_add_edge_on_existing_verts_with_edges():
     """ Can we add edges on verts that already have edges
     """
     g = graph_filled()
+    assert g.graph['A'] == {'B': 10}
     g.add_edge('A', 'E', 7)
-    actual = g.graph['A']
-    expected = {'B': 10, 'E': 6}
-    assert expected == actual
+    assert g.graph['A'] == {'B': 10, 'E': 7}
 
 
 def test_add_edge_error_for_not_valid_first_vert():
@@ -167,15 +166,29 @@ def test_add_edge_overwrite_existing_edge():
     """ If the edge existed, it should update it
     """
     g = graph_filled()
-    before = g.graph['B']['A']
+    assert g.graph['B'] == {'A': 5, 'D': 15, 'C': 20}
     g.add_edge('B', 'A', 6)
-    after = 6
-    assert before != after
-    actual = g.graph['B']['A']
-    assert after == actual
+    assert g.graph['B'] == {'A': 6, 'D': 15, 'C': 20}
 
 
 def test_method_get_neighbors_exists():
     """ Can we see the Graph method get_neighbors
     """
     assert Graph.get_neighbors
+
+
+def test_method_get_neighbors_returns_expected():
+    """ Do we get the correct response when called valid vertice
+    """
+    g = graph_filled()  # 'B': {'A': 5, 'D': 15, 'C': 20}
+    expected = ['A', 'D', 'C']
+    actual = g.get_neighbors('B')
+    assert expected == actual
+
+
+def test_method_get_neighbors_on_invalid_vert():
+    """ Do we get expected error when called on not present vertice
+    """
+    e = graph_empty()
+    with pytest.raises(ValueError):
+        e.get_neighbors('B')

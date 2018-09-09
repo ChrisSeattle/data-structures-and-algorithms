@@ -24,31 +24,14 @@
 #     }
 
 # I'm not sure switching to using dictionaries made this easier for me.
-# Based on the after class notes, I can see that the Graph should be a
-# dictionary with what seems to be a vertice name as a key, and the value
-# being a nested dictionary whose key - value pairs are the connected vertice
-# name - weight of connection (which I assume is directional). I am also
-# assuming that individual key, value pair that represents each vertice
-# will also be a dictionary of exactly one item (technically it could be
-# another data type like a Node with a value & data, or other options).
-# When added to the graph it should not be simply inserted as a nested
-# dictionary (which would result in 3 levels of nested dictionaries).
-# Instead this 'vertice' shall have it's key, value pair added to the
-# dictionary of the graph property.
-
-
-# I'm not sure switching to using dictionaries made this easier for me.
 # As dictionaries, there are plenty of ambiguities on what a singluar
 # vertice looks like, and in what context we are managing the entire
 # vertice (currently dictionary item) object vs. vertice name (or value)
-# I will assume all references to 'val', 'v1', or 'v2' are for the keys in
-# in the dictionary of self.graph. This means the add_vert method only
-# adds the name of the vertice, but cannot handle
 
 class Graph(object):
     """ Allows for connecting multiple Vertice, which may have weights & direction
-        For now we use dictionary keys as Vertice names & values as dictionary
-        of key: value pair of name: weight of connection to neighboring vertice
+        For now we use dictionary keys as Vertice names w/ values as dictionary
+        of key:value pair of name:weight of connection to neighboring vertice
     """
     def __init__(self):
         self.graph = {}
@@ -77,16 +60,12 @@ class Graph(object):
             for ea in val:
                 rel.append({})
         for i in range(len(val)):
-            # check to see if the vert already exists, if so save it to report later
-            # import pdb; pdb.set_trace()
+            # check to see if the vert already exists, if so save for later report
             if self.has_vert(val[i]):
                 err += f'{val[i]} '
             else:
                 self.graph[val[i]] = rel[i]
             # self.graph.update(val)  # put the key:value pair into graph
-            # if len(rel) > 0:
-            #     self.add_vert(i)
-            #     [self.add_edge(i, v2, weight) for (v2, weight) in rel[i].items()]
         # if any passed vertices already existed, send ValueError
         if len(err) > 0:
             raise ValueError(f'Vertice(s) {err} already present')
@@ -100,27 +79,21 @@ class Graph(object):
 
     def add_edge(self, v1, v2, weight):
         """ This is adding a directional weighted connection from v1 to v2
-            v1 and v2 must be already existing vertices in the graph
+            v1 and v2 must be already existing vertice names in the graph
         """
-        # it is unclear to me if v1 and v2 are vertice names, or vertice
-        # objects (which are dictionaries for now)
-        # I'm going with vertice names as that is how I imagine the use
-        # case for this, but I could easily see the other way as valid.
-        # don't forget to validate
-        if v1 not in self.graph.keys():
+        if not self.has_vert(v1):
             raise ValueError('First given Vertice is not present')
-        if v2 not in self.graph.keys():
+        if not self.has_vert(v2):
             raise ValueError('Second given Vertice is not present')
         # Overwrite if previously the v1 to v2 connection existed
         # But also, preserve any other connections from v1 to other vertices
         self.graph[v1][v2] = weight
-        # add a relationship and weight between two verts
 
     def get_neighbors(self, val):
         """ Return all verticies that the given val vertice connects out to
         """
         # Given a val (key), return all adjacent verts
-        # If we only want the names of the vertice, we would do the following:
-        # return self.graph[val].keys()
-        # To return the "vertice objects" (currently a dictionary)
+        # test this vertice exists in graph
+        if val not in self.graph.keys():
+            raise ValueError('That vertice is not present')
         return list(self.graph[val].keys())
