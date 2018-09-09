@@ -1,6 +1,6 @@
 from .graph import Graph
 from .conftest import graph_empty, graph_filled, graph_filled_for_traversal, z_vert, y_vert, x_vert
-
+import pytest
 
 
 def test_alive():
@@ -27,8 +27,8 @@ def test_length_works_on_fixtures():
     """ Checking the len() reports expected results on our test graphs
     """
     assert len(graph_filled_for_traversal()) == 7
-    assert len(graph_empty()) == 0
     assert len(graph_filled()) == 6
+    assert len(graph_empty()) == 0
 
 
 def test_graph_repr():
@@ -76,14 +76,103 @@ def test_has_vert_returns_false():
 def test_method_add_vert_exists():
     """ Can we see the Graph method add_vert
     """
-
     assert Graph.add_vert
+
+
+def test_method_add_vert_simple_vert_name():
+    """ Does method add_vert work for a single vert name passed
+    """
+    e = graph_empty()
+    assert not e.has_vert('P')
+    e.add_vert('P')
+    assert e.has_vert('P')
+
+
+def test_add_vert_vert_name_list():
+    """ Does method add_vert work when passed a list of names
+    """
+    e = graph_empty()
+    assert not e.has_vert('P')
+    assert not e.has_vert('Q')
+    e.add_vert(['P', 'Q'])
+    assert e.has_vert('P')
+    assert e.has_vert('Q')
+
+
+def test_method_add_vert_dict():
+    """ Does method add_vert work when passed a single dict
+        We would not expect it to work on a list of vertices
+    """
+    e = graph_empty()
+    assert not e.has_vert('Z')
+    e.add_vert(z_vert())
+    assert e.has_vert('Z')
 
 
 def test_method_add_edge_exists():
     """ Can we see the Graph method add_edge
     """
     assert Graph.add_edge
+
+
+def test_method_add_edge_on_new_verts():
+    """ Can we add edges on new empty verts
+    """
+    e = graph_empty()
+    e.add_vert('P')
+    e.add_vert('Q')
+    e.add_edge('P', 'Q', 5)
+    expected = {'P': {'Q': 5}, 'Q': {}}
+    actual = e.graph
+    assert expected == actual
+
+
+def test_add_edge_on_verts_with_no_edges():
+    """ Can we add edges on verts that exist with no edges
+    """
+    g = graph_filled()
+    g.add_edge('C', 'E', 6)
+    actual = g.graph['C']
+    expected = {'E': 6}
+    assert expected == actual
+
+
+def test_add_edge_on_existing_verts_with_edges():
+    """ Can we add edges on verts that already have edges
+    """
+    g = graph_filled()
+    g.add_edge('A', 'E', 7)
+    actual = g.graph['A']
+    expected = {'B': 10, 'E': 6}
+    assert expected == actual
+
+
+def test_add_edge_error_for_not_valid_first_vert():
+    """ Can we add edges on new empty verts
+    """
+    g = graph_filled()
+    with pytest.raises(ValueError):
+        g.add_edge('P', 'B', 6)
+
+
+def test_add_edge_error_for_not_valid_second_vert():
+    """ Can we add edges on new empty verts
+    """
+    g = graph_filled()
+    with pytest.raises(ValueError):
+        g.add_edge('B', 'Q', 8)
+
+
+def test_add_edge_overwrite_existing_edge():
+    """ If the edge existed, it should update it
+    """
+    g = graph_filled()
+    before = g.graph['B']['A']
+    g.add_edge('B', 'A', 6)
+    after = 6
+    assert before != after
+    actual = g.graph['B']['A']
+    assert after == actual
 
 
 def test_method_get_neighbors_exists():
