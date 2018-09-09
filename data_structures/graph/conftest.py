@@ -35,3 +35,28 @@ def graph_filled_for_traversal():
         'G': {'F': 20}
     }
     return g
+
+
+@pytest.fixture()
+def alone_vert():
+    return {'alone': {}}
+
+
+@pytest.fixture()
+def z_vert():
+    return {'Z': {'Y': 20}}
+
+
+@pytest.fixture()
+def y_vert():
+    return {'Y': {'X': 20, 'Z': 20}}
+
+
+@pytest.fixture()
+def x_vert():
+    return {'X': {'Z': 20, 'Y': 10}}
+
+
+
+
+

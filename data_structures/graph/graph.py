@@ -44,15 +44,18 @@ class Graph(object):
     """
     def __init__(self):
         self.graph = {}
+        # self.vert_names = [*self.graph]
 
-    def __repr__(self):
-        pass
+        # [vert_name for vert_name in self.graph.keys()]
 
     def __str__(self):
-        pass
+        return f'{[*self.graph]}'
+
+    def __repr__(self):
+        return f'<Graph | Vertices: {[*self.graph]} | Length: {len(self.graph)}>'
 
     def __len__(self):
-        pass
+        return len(self.graph)
 
     def add_vert(self, val):
         """ Adding Vertice to graph if it does not already exist
@@ -80,11 +83,13 @@ class Graph(object):
         # I'm going with vertice names as that is how I imagine the use
         # case for this, but I could easily see the other way as valid.
         # don't forget to validate
-        if not self.has_vert(v1):
+        if v1 not in self.graph.keys():
             raise ValueError('First given Vertice is not present')
-        if not self.has_vert(v2):
+        if v2 not in self.graph.keys():
             raise ValueError('Second given Vertice is not present')
-        old = self.graph[val]
+        # Overwrite if previously the v1 to v2 connection existed
+        # But also, preserve any other connections from v1 to other vertices
+        self.graph[v1][v2] = weight
         # add a relationship and weight between two verts
 
 
