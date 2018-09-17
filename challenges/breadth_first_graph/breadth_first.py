@@ -99,16 +99,21 @@ class Graph(object):
             of the graph in a breadth first approach. Prints these out in order
             they were visited
         """
+        if not self.has_vert(val):
+            raise ValueError('Starting vertice is not in the Graph')
+
         visited = dict()
         q = Queue()
         q.enqueue(val)
         visited[val] = True
+        result = []
         while q:
             for n in self.graph[q.front].keys():
                 if n not in visited:
                     visited[n] = True
                     q.enqueue(n)
-            print(q.dequeue)
+            result.append(q.dequeue)
+        return result
 
     def add_vert(self, val):
         """ Adding Vertice to graph if it does not already exist

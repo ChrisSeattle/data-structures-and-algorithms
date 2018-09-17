@@ -1,4 +1,4 @@
-from .graph import Graph
+from .breadth_first import Graph
 from .conftest import graph_empty, graph_filled, graph_filled_for_traversal, z_vert, y_vert, x_vert
 import pytest
 
@@ -203,17 +203,24 @@ def test_method_breadth_first_exists():
 def test_breadth_first_on_empty_graph():
     """ Do we handle when graph has no vertices
     """
-    pass
+    e = graph_empty()
+    with pytest.raises(ValueError):
+        e.breadth_first('a')
 
 
 def test_breadth_first_on_invalid_vert():
     """ Do we get expected error when called on not present vertice
     """
-    pass
+    g = graph_filled()
+    with pytest.raises(ValueError):
+        g.breadth_first('z')
 
 
 def test_breadth_first_on_traversal_input():
     """ Do we get expected output on valid graph to traverse.
     """
-    pass
-
+    expected1 = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+    expected2 = ['A', 'C', 'B', 'F', 'G', 'D', 'E']
+    t = graph_filled_for_traversal()
+    actual = t.breadth_first('A')
+    assert expected1 == actual

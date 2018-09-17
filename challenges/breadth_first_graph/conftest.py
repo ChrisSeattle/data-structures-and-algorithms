@@ -1,5 +1,5 @@
 import pytest
-from .graph import Graph
+from .breadth_first import Graph
 
 
 @pytest.fixture()
