@@ -21,6 +21,7 @@ pipenv install pytest
     - [binary_tree](.data_structures/binary_tree)
     - [graph](.data_structures/graph)
     <!-- - [branch_name](.data_structures/branch_name) -->
+    <!-- - [branch_name](.data_structures/branch_name) -->
 
 2. Algorithms
     - [array_shift](./challenges/array_shift)
@@ -33,4 +34,6 @@ pipenv install pytest
     - [fifo_animal_shelter](./challenges/fifo_animal_shelter)
     - [multi-bracket-validation](./challenges/multi-bracket-validation)
     - [find_maximum_value_binary_tree](./challenges/find_maximum_value_binary_tree)
+    - [breadth_first_graph](./challenges/breadth_first_graph)
+    <!-- - [branch_name](./challenges/branch_name) -->
     <!-- - [branch_name](./challenges/branch_name) -->
