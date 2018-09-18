@@ -1,6 +1,82 @@
-from .breadth_first import Graph
-from .conftest import graph_empty, graph_filled, graph_filled_for_traversal, z_vert, y_vert, x_vert
+# from .breadth_first import Node, Queue
+from .get_edges import Graph, Node, Queue
+# from .conftest import airline, graph_filled, graph_filled_for_traversal, z_vert, y_vert, x_vert
 import pytest
+import copy
+
+# --------------
+# Start of fixtures
+# --------------
+
+
+@pytest.fixture()
+def graph_empty():
+    g = Graph()
+    return g
+
+
+@pytest.fixture()
+def graph_filled():
+    g = Graph()
+    g.graph = {
+        'A': {'B': 10},
+        'B': {'A': 5, 'D': 15, 'C': 20},
+        'C': {},
+        'D': {'A': 5},
+        'E': {},
+        'F': {}
+    }
+    return g
+
+
+@pytest.fixture()
+def graph_filled_for_traversal():
+    g = Graph()
+    g.graph = {
+        'A': {'B': 10, 'C': 15},
+        'B': {'D': 15, 'E': 5, 'C': 2},
+        'C': {'F': 50, 'G': 25},
+        'D': {},
+        'E': {'C': 5},
+        'F': {'E': 10},
+        'G': {'F': 20}
+    }
+    return g
+
+
+@pytest.fixture()
+def airline():
+    a = Graph()
+    a.add_vert({'Pandora': {'Arendelle': 150, 'Metroville': 82}})
+    a.add_vert({'Arendelle': {'Pandora': 150, 'New Monstropolis': 42, 'Metroville': 99}})
+    a.add_vert({'Metroville': {'Pandora': 82, 'Arendelle': 99, 'New Monstropolis': 105, 'Narnia': 37, 'Naboo': 26}})
+    a.add_vert({'New Monstropolis': {'Arendelle': 42, 'Metroville': 105, 'Naboo': 73}})
+    a.add_vert({'Narnia': {'Metroville': 37, 'Naboo': 250, }})
+    a.add_vert({'Naboo': {'New Monstropolis': 73, 'Narnia': 250, 'Metroville': 26}})
+    return a
+
+@pytest.fixture()
+def alone_vert():
+    return {'alone': {}}
+
+
+@pytest.fixture()
+def z_vert():
+    return {'Z': {'Y': 20}}
+
+
+@pytest.fixture()
+def y_vert():
+    return {'Y': {'X': 20, 'Z': 20}}
+
+
+@pytest.fixture()
+def x_vert():
+    return {'X': {'Z': 20, 'Y': 10}}
+
+# --------------
+# End of fixtures
+# --------------
 
 
 def test_alive():
@@ -220,9 +296,78 @@ def test_breadth_first_on_traversal_input():
     """ Do we get expected output on valid graph to traverse.
     """
     expected1 = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
-    expected2 = ['A', 'C', 'B', 'F', 'G', 'D', 'E']
-    import copy
+    # expected2 = ['A', 'C', 'B', 'F', 'G', 'D', 'E']
+    # import copy
     temp = graph_filled_for_traversal()
     t = copy.deepcopy(temp)
     actual = t.breadth_first('A')
     assert expected1 == actual
+
+# -----------------
+# Added for get_edges
+# -----------------
+
+
+def test_method_get_edges_exists():
+    """ Can we see the method
+    """
+    assert Graph.get_edges
+
+
+def test_get_edges_on_empty_graph(graph_empty):
+    """ Do we handle when graph has no vertices
+    """
+    assert isinstance(graph_empty, Graph)
+    success, cost = graph_empty.get_edges(['a'])
+    assert success is False
+
+
+def test_get_edges_on_invalid_vert(graph_filled):
+    """ Do we get expected results when called on not present vertice
+    """
+    assert isinstance(graph_filled, Graph)
+    success, cost = graph_filled.get_edges(['z'])
+    assert success is False
+
+
+def test_fixture_for_airline_exists(airline):
+    """ Do we see the airline fiture in conftest file
+    """
+    assert isinstance(airline, Graph)
+
+
+def test_airline_routes_2_cities(airline):
+    """ Do we get expected results from the airline questions
+    """
+    input = ['Metroville', 'Pandora']
+    expected = (True, 82)
+    actual = airline.get_edges(input)
+    assert expected == actual
+
+
+def test_airline_routes_3_cities(airline):
+    """ Do we get expected results from the airline questions
+    """
+    input = ['Arendelle', 'New Monstropolis', 'Naboo']
+    expected = (True, 115)
+    actual = airline.get_edges(input)
+    assert expected == actual
+
+
+def test_airline_2_cities_exists_not_connected(airline):
+    """ Do we get expected results from the airline questions
+    """
+    input = ['Naboo', 'Pandora']
+    expected = (False, 0)
+    actual = airline.get_edges(input)
+    assert expected == actual
+
+
+def test_airline_3_cities_exists_not_connected(airline):
+    """ Do we get expected results from the airline questions
+    """
+    input = ['Narnia', 'Arendelle', 'Naboo']
+    expected = (False, 0)
+    actual = airline.get_edges(input)
+    assert expected == actual
+
