@@ -35,5 +35,6 @@ pipenv install pytest
     - [multi-bracket-validation](./challenges/multi-bracket-validation)
     - [find_maximum_value_binary_tree](./challenges/find_maximum_value_binary_tree)
     - [breadth_first_graph](./challenges/breadth_first_graph)
+    - [get_edges](./challenges/get_edges)
     <!-- - [branch_name](./challenges/branch_name) -->
     <!-- - [branch_name](./challenges/branch_name) -->
