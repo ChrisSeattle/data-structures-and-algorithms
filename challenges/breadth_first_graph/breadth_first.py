@@ -13,21 +13,23 @@
 #     def __str__(self):
 #         return f'<Vertice | Val: {self.val} | Connects: {self.vertices} | Connections: {len(self.vertices)}>'
 
+
 class Node(object):
     """ Node used in Binary tree. Is aware of a left and a right
         for following Nodes, holds a value and data.
     """
-    def __init__(self, val, data=None, left=None, right=None):
+    def __init__(self, val, vertices=None, data=None):
         self.val = val
         self.data = data
-        self.left = left
-        self.right = right
+        self.vertices = vertices
+        if self.vertices is None:
+            self.vertices = {}
 
     def __str__(self):
         return f'{self.val}'
 
     def __repr__(self):
-        return f'<Node | Val: {self.val} | Data: {self.data} | Left: {self.left} | Right: {self.right}>'
+        return f'<Node | Val: {self.val} | Data: {self.data} | Connects: {self.vertices}>'
 
 
 class Queue(object):
@@ -55,6 +57,7 @@ class Queue(object):
             First in, First out.
         """
         if self.front is None:  # this is the first node in queue
+            newNode._next = None
             self.front, self.back = newNode, newNode
         elif self.back is self.front:  # this is the second node
             self.front._next, self.back = newNode, newNode
@@ -104,15 +107,17 @@ class Graph(object):
 
         visited = dict()
         q = Queue()
-        q.enqueue(val)
+        startNode = Node(val)
+        q.enqueue(startNode)
         visited[val] = True
         result = []
         while q:
-            for n in self.graph[q.front].keys():
+            for n in self.graph[q.front.val].keys():
                 if n not in visited:
                     visited[n] = True
-                    q.enqueue(n)
-            result.append(q.dequeue)
+                    newNode = Node(n)
+                    q.enqueue(newNode)
+            result.append(q.dequeue().val)
         return result
 
     def add_vert(self, val):

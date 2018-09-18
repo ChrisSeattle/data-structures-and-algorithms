@@ -221,6 +221,8 @@ def test_breadth_first_on_traversal_input():
     """
     expected1 = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
     expected2 = ['A', 'C', 'B', 'F', 'G', 'D', 'E']
-    t = graph_filled_for_traversal()
+    import copy
+    temp = graph_filled_for_traversal()
+    t = copy.deepcopy(temp)
     actual = t.breadth_first('A')
     assert expected1 == actual
