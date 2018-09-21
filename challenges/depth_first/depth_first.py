@@ -25,7 +25,6 @@ class Graph(object):
         """
         total = 0
         curr = arr[0]
-        # import pdb; pdb.set_trace()
         if not self.has_vert(curr):
             return (False, 0)
         for city in arr:
@@ -37,9 +36,27 @@ class Graph(object):
             curr = city
         return (True, total)
 
-    def depth_first(self, val):
+    def depth_first(self):
+        """ depth first traversal. This starts with first key in self.graph
         """
-        """
+        if len(self.graph) == 0:
+            return None
+        temp = []
+        hold = []
+        results = dict()
+        curr = list(self.graph.keys())[0]
+        hold.append(curr)
+
+        while len(hold) > 0:
+            curr = hold.pop()  # Technically repeated values won't change order
+            results[curr] = True  # Tracking both visited and traversal order
+            temp = list(self.graph[curr].keys())
+            while len(temp) > 0:
+                val = temp.pop()
+                if val not in results:
+                    hold.append(val)  # skipping val if it is already reported
+        print(list(results.keys()))
+        return list(results.keys())
 
     def breadth_first(self, val):
         """ Accepts a starting node as input, then traverses all nodes/vertices

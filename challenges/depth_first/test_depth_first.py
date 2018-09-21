@@ -1,5 +1,5 @@
 # from .breadth_first import Node, Queue
-from .get_edges import Graph, Node, Queue
+from .depth_first import Graph
 # from .conftest import airline, graph_filled, graph_filled_for_traversal, z_vert, y_vert, x_vert
 import pytest
 import copy
@@ -371,3 +371,39 @@ def test_airline_3_cities_exists_not_connected(airline):
     actual = airline.get_edges(input)
     assert expected == actual
 
+# ---------------
+# Added for depth_first
+# ---------------
+
+
+def test_method_depth_first_exists():
+    """ Can we see the method
+    """
+    assert Graph.depth_first
+
+
+def test_depth_first_on_empty(graph_empty):
+    """ If there are no vertices, do we handle it
+    """
+    actual = graph_empty.depth_first()
+    expected = None
+    assert expected == actual
+
+
+def test_depth_first_on_example_data():
+    """ Using the data from the challenge
+    """
+    g = Graph()
+    g.add_vert({
+        'A': {'B': 1, 'D': 1},
+        'B': {'A': 1, 'C': 1, 'D': 1},
+        'D': {'A': 1, 'B': 1, 'E': 1, 'H': 1, 'F': 1},
+        'C': {'B': 1, 'G': 1},
+        'G': {'C': 1},
+        'E': {'D': 1, 'H': 1},
+        'H': {'E': 1, 'F': 1},
+        'F': {'D': 1, 'H': 1},
+        })
+    expected = ['A', 'B', 'C', 'G', 'D', 'E', 'H', 'F']
+    actual = g.depth_first()
+    assert expected == actual

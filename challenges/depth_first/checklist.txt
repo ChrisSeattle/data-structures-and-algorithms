@@ -1,14 +1,14 @@
 ### Features Checklist
 
-- [ ] Create a function that accepts an adjacency list as a graph, and conducts a depth first traversal.
-- [ ] return a collection of nodes in their depth first traversal order
-
+- [x] Create a function that accepts an adjacency list as a graph, and conducts a depth first traversal.
+- [x] return a collection of nodes in their depth first traversal order
+General
 - [x] Created and working in a branch titled as the challenge name
 - [x] Created a directory named according to the challenge name, import all starter files
-- [ ] Whiteboard image placed in /assests directory with name matching the challenge
+- [x] Whiteboard image placed in /assests directory with name matching the challenge
 - [x] Function name labeled according to instructions
 - [x] Prepare Checklist to use with assignment completion
-- [ ] Write at least 3 test assertions
-- [ ] Ensure code is passing all tests
+- [x] Write at least 3 test assertions
+- [x] Ensure code is passing all tests
 - [x] Update challenge Readme file with accurate info.
 - [x] Update main repo Readme file with accurate info.
