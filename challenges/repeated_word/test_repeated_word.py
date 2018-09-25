@@ -1,5 +1,4 @@
-from .this_directory import function_name, other_function
-from ... top.middle.lower.filename import Class1, Class2
+from .repeated_word import repeated_word, HashTable
 import pytest
 
 
@@ -12,29 +11,66 @@ def test_alive():
 def test_function_name_exists():
     """ can we see the basic function
     """
-    assert function_name
+    assert repeated_word
 
 
-
-@pytest.fixture
-def empty_list():
-    return Class1()
-
-
-@pytest.fixture
-def small_list():
-    sl = Class2()
-    sl.insert(1)
-    sl.insert(2)
-    sl.insert(3)
-    sl.insert(4)
-    return sl
-
-
-def test_function_name_results_are_a_certain_way(empty_list):
-    """ docstring on what we are checking
+def test_class_name_exists():
+    """ can we see the class
     """
-    expected = 44
-    actual = empty_list.method(44)
+    assert HashTable
+
+
+@pytest.fixture
+def empty():
+    return HashTable()
+
+
+def test_repeated_word_no_repeats():
+    """
+    """
+    string = 'It is possible to have no repeats'
+    expected = None
+    actual = repeated_word(string)
     assert expected == actual
 
+
+def test_repeated_word_simple_repeat():
+    """ no collisions before finding repeated word
+    """
+    string = 'the the'
+    actual = repeated_word(string)
+    expected = 'the'
+    assert expected == actual
+
+
+def test_repeated_words_ignores_case():
+    """ It should ignore the case of the words
+    """
+    string = 'The the'
+    actual = repeated_word(string)
+    expected = 'the'
+    assert expected == actual
+
+
+def test_repeated_words_ignores_ending_punctuation():
+    """ If a word has an ending punctuation, it should be ignored.
+    """
+    string = 'the the.'
+    actual = repeated_word(string)
+    expected = 'the'
+    assert expected == actual
+
+
+def test_repeated_words_ignores_non_word_characters():
+    """
+    """
+    pass
+
+
+def test_repeated_word_collision_repeat():
+    """ docstring on what we are checking
+    """
+    string = 'tis sit its sit'
+    expected = 'sit'
+    actual = repeated_word(string)
+    assert expected == actual

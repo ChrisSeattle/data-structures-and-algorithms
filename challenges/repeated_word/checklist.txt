@@ -1,6 +1,6 @@
 ### Features Checklist
 
-- [ ] Write a function that accepts a lengthy string parameter.
+- [x] Write a function that accepts a lengthy string parameter.
 - [ ] Return the first word to occur more than once in that provided string.
 
 - [x] Created and working in a branch titled as the challenge name
@@ -8,7 +8,7 @@
 - [x] Whiteboard image placed in /assests directory with name matching the challenge
 - [x] Function name labeled according to instructions
 - [x] Prepare Checklist to use with assignment completion
-- [ ] Write at least 3 test assertions
+- [x] Write at least 3 test assertions
 - [ ] Ensure code is passing all tests
 - [x] Update challenge Readme file with accurate info.
 - [x] Update main repo Readme file with accurate info.
