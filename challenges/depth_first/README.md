@@ -9,6 +9,7 @@ Create a function that accepts an adjacency list as a graph, and conducts a dept
 ## Solution
 
 ![Whiteboard Image](../../assets/depth_first.jpg)
+![Second Approach Whiteboard Image](../../assets/depth_first2.jpg)
 
 **Author**: Chris L Chapman
-**Whiteboard Contributors**  J Christie , Roman Kireev
+**Whiteboard Contributors**  Nick Damberg, Chris L Chapman
