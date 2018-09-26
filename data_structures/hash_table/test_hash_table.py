@@ -8,12 +8,6 @@ def test_alive():
     pass
 
 
-def test_function_name_exists():
-    """ can we see the basic function
-    """
-    assert repeated_word
-
-
 def test_class_name_exists():
     """ can we see the class
     """
