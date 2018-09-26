@@ -20,6 +20,7 @@ pipenv install pytest
     - [queue](.data_structures/queue)
     - [binary_tree](.data_structures/binary_tree)
     - [graph](.data_structures/graph)
+    - [hash_table](.data_structures/hash_table)
     <!-- - [branch_name](.data_structures/branch_name) -->
     <!-- - [branch_name](.data_structures/branch_name) -->
 
@@ -37,6 +38,6 @@ pipenv install pytest
     - [breadth_first_graph](./challenges/breadth_first_graph)
     - [get_edges](./challenges/get_edges)
     - [depth_first](./challenges/depth_first)
-    <!-- - [repeated_word](./challenges/repeated_word) -->
+    - [repeated_word](./challenges/repeated_word)
     <!-- - [branch_name](./challenges/branch_name) -->
     <!-- - [branch_name](./challenges/branch_name) -->
