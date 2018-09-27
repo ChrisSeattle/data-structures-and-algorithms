@@ -39,5 +39,5 @@ pipenv install pytest
     - [get_edges](./challenges/get_edges)
     - [depth_first](./challenges/depth_first)
     - [repeated_word](./challenges/repeated_word)
-    <!-- - [branch_name](./challenges/branch_name) -->
+    - [tree_intersection](./challenges/tree_intersection)
     <!-- - [branch_name](./challenges/branch_name) -->
