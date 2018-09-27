@@ -18,3 +18,14 @@ def test_class_name_exists():
 def empty():
     return HashTable()
 
+
+@pytest.fixture
+def collision():
+    value = 'tis sit its sit'
+    h = HashTable()
+    h.set(value)
+    return h
+
+
+
+
