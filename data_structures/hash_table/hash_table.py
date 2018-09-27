@@ -1,4 +1,4 @@
-# from textwrap import dedent
+from .binary_tree import Node, BinaryTree
 # import sys
 
 
@@ -34,10 +34,10 @@ class HashTable:
         """
         hashkey = self._hash_key(key)
         if self.hashtable[hashkey] is None:
-            self.hashtable[hashkey] = [value]
+            bt = BinaryTree({key: value})
+            self.hashtable[hashkey] = [bt]
         else:
-            # TODO: deal with collisions
-            pass
+            self.hashtable[hashkey].insert_val_data(key, value)
         return True
 
     def get(self, key):
@@ -47,8 +47,11 @@ class HashTable:
         returns: the value stored with the key
         """
         hashkey = self._hash_key(key)
+        bt = self.hashtable[hashkey]
+        
+
         # TODO: deal with multiple values for this hashkey
-        return self.hashtable[hashkey]
+        return
 
     def remove(self, key):
         """Retrieve and remove a value from the hash table by key.
