@@ -26,7 +26,9 @@ def test_shuffled_list_gets_sorted():
     expected = [num for num in range(20)]
     unsorted = expected[:]
     shuffle(unsorted)
+    print(unsorted)
     now_sorted = selection_sort(unsorted)
+    print(now_sorted)
     assert expected == now_sorted
 
 
