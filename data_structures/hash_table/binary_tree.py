@@ -3,9 +3,12 @@
 class Node(object):
     """ Node used in Binary tree. Is aware of a left and a right
         for following Nodes, holds a value and data.
+        If no data is given, data will be set to the given val
     """
     def __init__(self, val, data=None, left=None, right=None):
         self.val = val
+        if data is None:
+            data = val
         self.data = data
         self.left = left
         self.right = right
@@ -73,15 +76,21 @@ class BinaryTree(object):
         self.root = None
         if iterable is not None:
             if isinstance(iterable, dict):
-                vals, data = iterable.items()
-                for i in range(len(iterable)):
-                    self.insert_val_data(vals[i], data[i])
+                [self.insert(val, data) for val, data in iterable.items()]
+                # vals, data = iterable.items()
+                # for i in range(len(iterable)):
+                #     self.insert(vals[i], data[i])
             else:
                 try:
                     iterable = iter(iterable)
                 except TypeError:
                     iterable = [iterable]
                 for i in iterable:
+                    # if isinstance(i, dict):
+                    #     vals, data = i.items()
+                    #     for j in range(len(i)):
+                    #         self.insert(vals[j], data[j])
+                    # else:
                     self.insert(i)
 
     def __str__(self):
@@ -90,11 +99,14 @@ class BinaryTree(object):
     def __repr__(self):
         return f'<BinaryTree | Root: {self.root}>'
 
-    def insert_val_data(self, val, data):
+    def insert(self, val, data=None):
         """ Insert new value at appropriate tree location (but not self-correcting)
-            Val is the location key, data is the package value
+            Val is the location key, data is stored info (if none given, use val)
             Insert with O(log n)
         """
+        if data is None:
+            data = val
+
         def _walk(curr, val, data):
             """ This recursive helper function will drill down to an insertion point
                 Returns True if we were able to insert, False if we have a duplicate val
@@ -117,39 +129,33 @@ class BinaryTree(object):
             self.root = Node(val, data)
             return True
         _walk(self.root, val, data)
-    # end of insert_val_data
+    # end of insert
 
-    def get_val_data(self, val, data):
+    def get(self, val):
+        """ Searches for the val, returns the data
         """
-        """
+        if self.root is None:
+            return False
 
-    def insert(self, val):
-        """ Insert new value at appropriate tree location (but not self-correcting)
-            Insert with O(log n)
-        """
         def _walk(curr, val):
-            """ This recursive helper function will drill down to an insertion point
-                Returns True if we were able to insert, False if we have a duplicate val
+            """ This recursive helper function will drill down to find a node location
+                Returns the data value if found, returns False if it is not present
             """
+            if val == curr.val:
+                return curr.data
             if val < curr.val:
                 if curr.left is None:
-                    curr.left = Node(val)
-                    return True
+                    return False
                 return _walk(curr.left, val)
             if val > curr.val:
                 if curr.right is None:
-                    curr.right = Node(val)
-                    return True
+                    return False
                 return _walk(curr.right, val)
             else:
                 raise ValueError(f'Neither < or > for {val}, {curr.val}')
                 # return False
 
-        if self.root is None:
-            self.root = Node(val)
-            return True
-        _walk(self.root, val)
-    # end of insert method
+        return _walk(self.root, val)
 
     def in_order(self, callable=lambda node: print(node)):
         """ Go left, visit, then go right

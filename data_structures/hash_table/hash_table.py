@@ -37,7 +37,7 @@ class HashTable:
             bt = BinaryTree({key: value})
             self.hashtable[hashkey] = [bt]
         else:
-            self.hashtable[hashkey].insert_val_data(key, value)
+            self.hashtable[hashkey].insert(key, value)
         return True
 
     def get(self, key):
@@ -48,10 +48,8 @@ class HashTable:
         """
         hashkey = self._hash_key(key)
         bt = self.hashtable[hashkey]
-        
-
-        # TODO: deal with multiple values for this hashkey
-        return
+        data = bt.get(key)
+        return data
 
     def remove(self, key):
         """Retrieve and remove a value from the hash table by key.
