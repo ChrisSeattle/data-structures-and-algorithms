@@ -76,15 +76,21 @@ class BinaryTree(object):
         self.root = None
         if iterable is not None:
             if isinstance(iterable, dict):
-                vals, data = iterable.items()
-                for i in range(len(iterable)):
-                    self.insert(vals[i], data[i])
+                [self.insert(val, data) for val, data in iterable.items()]
+                # vals, data = iterable.items()
+                # for i in range(len(iterable)):
+                #     self.insert(vals[i], data[i])
             else:
                 try:
                     iterable = iter(iterable)
                 except TypeError:
                     iterable = [iterable]
                 for i in iterable:
+                    # if isinstance(i, dict):
+                    #     vals, data = i.items()
+                    #     for j in range(len(i)):
+                    #         self.insert(vals[j], data[j])
+                    # else:
                     self.insert(i)
 
     def __str__(self):
@@ -132,8 +138,8 @@ class BinaryTree(object):
             return False
 
         def _walk(curr, val):
-            """ This recursive helper function will drill down to an insertion point
-                Returns True if we were able to insert, False if we have a duplicate val
+            """ This recursive helper function will drill down to find a node location
+                Returns the data value if found, returns False if it is not present
             """
             if val == curr.val:
                 return curr.data
@@ -149,8 +155,7 @@ class BinaryTree(object):
                 raise ValueError(f'Neither < or > for {val}, {curr.val}')
                 # return False
 
-        _walk(self.root, val)
-
+        return _walk(self.root, val)
 
     def in_order(self, callable=lambda node: print(node)):
         """ Go left, visit, then go right
