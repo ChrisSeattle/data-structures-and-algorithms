@@ -1,4 +1,5 @@
-from .tree_intersection import Node, BinaryTree, tree_intersection
+from .bt import BinaryTree
+from .tree_intersection import tree_intersection
 import pytest
 
 
@@ -57,7 +58,6 @@ def test_tree_intersection_on_whiteboard_example(one_wb, two_wb):
 def test_tree_intersection_on_challenge_example(first_example, second_example):
     """ docstring on what we are checking
     """
-    expected = [100, 160, 125, 175, 200, 350, 500]
-    actual = tree_intersection(one_wb, two_wb)
+    expected = [500, 350, 200, 175, 160, 125, 100]
+    actual = tree_intersection(first_example, second_example)
     assert expected == actual
-
