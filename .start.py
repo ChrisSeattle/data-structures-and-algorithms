@@ -1,14 +1,12 @@
-# from textwrap import dedent
-# import sys
+# from package import function
+# import package
 
-class name(object):
+
+def function(input):
     """ Docstring
     """
-    __init__(self, input):
-        self.input = input
-
     # do stuff
-    return
+    return  # stuff returned
 
 
 # if __name__ == '__main__':

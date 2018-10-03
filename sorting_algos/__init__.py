@@ -1,3 +1,3 @@
-from .selection import selection_sort
+from .selection import selection_sort, quick_sort
 
-__all__ = [selection_sort]
+__all__ = [selection_sort, quick_sort]

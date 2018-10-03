@@ -23,7 +23,6 @@ pipenv install pytest
     - [hash_table](.data_structures/hash_table)
     <!-- - [branch_name](.data_structures/branch_name) -->
     <!-- - [branch_name](.data_structures/branch_name) -->
-    <!-- - [branch_name](.data_structures/branch_name) -->
 
 2. Algorithms
     - [array_shift](./challenges/array_shift)
@@ -44,10 +43,9 @@ pipenv install pytest
     - [left_join](./challenges/left_join)
     <!-- - [branch_name](./challenges/branch_name) -->
     <!-- - [branch_name](./challenges/branch_name) -->
-    <!-- - [branch_name](./challenges/branch_name) -->
     - Sorting Algorithms
         - [selection](./sorting_algos/selection.py)
         - [mergesort](./sorting_algos/mergesort)
+        - [quicksort](./sorting_algos/quicksort)
         <!-- - [branch_name](./sorting_algos/branch_name) -->
-
-
+        <!-- - [branch_name](./sorting_algos/branch_name) -->
