@@ -6,5 +6,20 @@ def quick_sort(arr):
         values greater than the pivot point value after the pivot point.
         Returns a list in acescending order.
     """
-    # do stuff
-    return arr
+
+    if len(arr) < 2:
+        return arr
+    p = len(arr) // 2
+    lo = []
+    hi = []
+    i = 0
+    while i < len(arr):
+        if i == p:
+            continue
+        if arr[i] > arr[p]:
+            hi.append(arr[i])
+        else:
+            lo.append(arr[i])
+    hi = quick_sort(hi)
+    lo = quick_sort(lo)
+    return lo + [arr[p]] + hi
