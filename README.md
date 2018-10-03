@@ -47,7 +47,7 @@ pipenv install pytest
     <!-- - [branch_name](./challenges/branch_name) -->
     - Sorting Algorithms
         - [selection](./sorting_algos/selection.py)
-        <!-- - [branch_name](./sorting_algos/branch_name) -->
+        - [mergesort](./sorting_algos/mergesort)
         <!-- - [branch_name](./sorting_algos/branch_name) -->
 
 
