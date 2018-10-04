@@ -1,6 +1,21 @@
 ### Features Checklist
 
 
+## radix_sort
+
+- [x] Write a function that accepts an array of positive integers,
+- [x] returns an array sorted by a radix sort algorithm.
+- [x] Created and working in a branch titled as the challenge name
+- [x] Created a directory|file named according to the challenge name, import all starter files
+- [x] Whiteboard image placed in /assets directory with the name matching the challenge
+- [x] Function name labeled according to instructions
+- [x] Prepare Checklist to use with assignment completion
+- [x] Write at least 3 test assertions
+- [x] Ensure code is passing all tests
+- [x] Update challenge Readme file with accurate info.
+- [x] Update main repo Readme file with accurate info.
+
+
 ## quicksort
 
 - [x] Created and working in a branch titled as the challenge name
@@ -9,7 +24,7 @@
 - [x] Function name labeled according to instructions
 - [x] Prepare Checklist to use with assignment completion
 - [x] Write at least 3 test assertions
-- [ ] Ensure code is passing all tests
+- [x] Ensure code is passing all tests
 - [x] Update challenge Readme file with accurate info.
 - [x] Update main repo Readme file with accurate info.
 
@@ -24,7 +39,7 @@
 - [x] Whiteboard image placed in /assests directory with name matching the challenge
 - [x] Function name labeled according to instructions
 - [x] Prepare Checklist to use with assignment completion
-- [ ] Write at least 3 test assertions
+- [x] Write at least 3 test assertions
 - [ ] Ensure code is passing all tests
 - [x] Update challenge Readme file with accurate info.
 - [x] Update main repo Readme file with accurate info.
@@ -33,10 +48,10 @@
 
 - [x] Created and working in a branch titled as the challenge name
 - [x] Created a directory|file named according to the challenge name, import all starter files
-- [ ] Whiteboard image placed in /assests directory with name matching the challenge
+- [x] Whiteboard image placed in /assests directory with name matching the challenge
 - [x] Function name labeled according to instructions
 - [x] Prepare Checklist to use with assignment completion
-- [ ] Write at least three unit tests for each method that you define as part of this challenge.
+- [x] Write at least three unit tests for each method that you define as part of this challenge.
 - [x] Ensure code is passing all tests
 - [x] Update challenge Readme file with accurate info.
 - [x] Update main repo Readme file with accurate info.
