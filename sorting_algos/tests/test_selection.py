@@ -9,7 +9,7 @@ def test_alive():
     pass
 
 
-def test_function_name_exists():
+def test_selection_sort_name_exists():
     """ can we see the basic function
     """
     assert selection_sort
@@ -20,7 +20,7 @@ def empty_list():
     return []
 
 
-def test_shuffled_list_gets_sorted():
+def test_sort_on_shuffled_list_selection_sort():
     """ Take a random ordered list, does our algo sort correctly
     """
     expected = [num for num in range(20)]
@@ -32,7 +32,7 @@ def test_shuffled_list_gets_sorted():
     assert expected == now_sorted
 
 
-def test_sorts_already_sorted():
+def test_already_sorted_selection_sort():
     """ Does our algo handle when input is already sorted
     """
     expected = [num for num in range(20)]
@@ -40,7 +40,7 @@ def test_sorts_already_sorted():
     assert expected == now_sorted
 
 
-def test_sorts_list_of_duplicates():
+def test_list_of_duplicates_selection_sort():
     """ Does our algo work if there are duplicates.
     """
     unsorted = [4, 4, 5, 3, 2, 3, 4, 3, 4, 5]
@@ -49,7 +49,7 @@ def test_sorts_list_of_duplicates():
     assert expected == now_sorted
 
 
-def test_sort_validates_expected_input():
+def test_validates_expected_input_selection_sort():
     """ If inappropriate input given, does it raise TypeError
     """
     with pytest.raises(TypeError):
