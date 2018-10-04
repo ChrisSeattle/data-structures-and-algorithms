@@ -12,13 +12,18 @@ Write a function that accepts an array of unsorted integers, and returns a sorte
 
 chooses a pivot, then places all values lower than the pivot value before the pivot index, and all values greater than the pivot after the pivot. This is done recursively for all sub-sets of the array to ensure the full array is sorted in acsending order.
 
+## radix_sort
+
 ### Solutions
 
 ![Whiteboard Image](../../assets/selection.jpg)
 ![Whiteboard Image](../../assets/mergesort.jpg)
 ![Whiteboard Image](../../assets/quicksort.jpg)
+![Whiteboard Image](../../assets/radix_sort.jpg)
 <!-- ![Whiteboard Image](../../assets/name.jpg) -->
 <!-- ![Whiteboard Image](../../assets/name.jpg) -->
+<!-- ![Whiteboard Image](../../assets/name.jpg) -->
+
 
 **Author**: Chris L Chapman
 **Whiteboard Contributors** Chris L Chapman
