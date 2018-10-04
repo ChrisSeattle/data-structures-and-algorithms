@@ -16,13 +16,13 @@ chooses a pivot, then places all values lower than the pivot value before the pi
 
 ### Solutions
 
-![Whiteboard Image](../../assets/selection.jpg)
-![Whiteboard Image](../../assets/mergesort.jpg)
-![Whiteboard Image](../../assets/quicksort.jpg)
-![Whiteboard Image](../../assets/radix_sort.jpg)
-<!-- ![Whiteboard Image](../../assets/name.jpg) -->
-<!-- ![Whiteboard Image](../../assets/name.jpg) -->
-<!-- ![Whiteboard Image](../../assets/name.jpg) -->
+![Whiteboard Image](../assets/selection.jpg)
+![Whiteboard Image](../assets/mergesort.jpg)
+![Whiteboard Image](../assets/quicksort.jpg)
+![Whiteboard Image](../assets/radix_sort.jpg)
+<!-- ![Whiteboard Image](../assets/name.jpg) -->
+<!-- ![Whiteboard Image](../assets/name.jpg) -->
+<!-- ![Whiteboard Image](../assets/name.jpg) -->
 
 
 **Author**: Chris L Chapman
