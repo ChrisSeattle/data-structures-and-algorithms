@@ -2,7 +2,7 @@
 def merge_sort(arr):
     """
     """
-    return
+    return arr
 
 
 # if __name__ == '__main__':

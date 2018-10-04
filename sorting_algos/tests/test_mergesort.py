@@ -48,9 +48,3 @@ def test_merge_sort_list_of_duplicates():
     now_sorted = merge_sort(unsorted)
     assert expected == now_sorted
 
-
-def test_sort_validates_expected_input():
-    """ If inappropriate input given, does it raise TypeError
-    """
-    with pytest.raises(TypeError):
-        merge_sort('hello world')

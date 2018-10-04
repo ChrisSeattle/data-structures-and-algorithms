@@ -12,14 +12,19 @@ def quick_sort(arr):
     p = len(arr) // 2
     lo = []
     hi = []
-    i = 0
-    while i < len(arr):
+    i = -1
+    while i < len(arr) - 1:
+        # import pdb; pdb.set_trace()
+        i += 1
         if i == p:
             continue
         if arr[i] > arr[p]:
             hi.append(arr[i])
-        else:
+        else:  # Note: equal values go into lo
             lo.append(arr[i])
     hi = quick_sort(hi)
     lo = quick_sort(lo)
-    return lo + [arr[p]] + hi
+    lo.append(arr[p])
+    if len(hi) > 0:
+        lo = lo + hi
+    return lo
