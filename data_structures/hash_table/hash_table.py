@@ -47,9 +47,11 @@ class HashTable:
         returns: the value stored with the key
         """
         hashkey = self._hash_key(key)
-        bt = self.hashtable[hashkey]
-        data = bt.get(key)
-        return data
+        try:
+            bt = self.hashtable[hashkey]
+            return bt.get(key)
+        except:
+            return False  # No value at that spot means we don't have that key-value
 
     def remove(self, key):
         """Retrieve and remove a value from the hash table by key.
