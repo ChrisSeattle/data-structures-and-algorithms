@@ -77,9 +77,6 @@ class BinaryTree(object):
         if iterable is not None:
             if isinstance(iterable, dict):
                 [self.insert(val, data) for val, data in iterable.items()]
-                # vals, data = iterable.items()
-                # for i in range(len(iterable)):
-                #     self.insert(vals[i], data[i])
             else:
                 try:
                     iterable = iter(iterable)
