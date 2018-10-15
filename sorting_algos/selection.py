@@ -1,5 +1,4 @@
 
-
 def selection_sort(arr):
     """ Sorts an array by repeatedly finding the minimum element (considering
         ascending order) from unsorted part and putting it at the beginning.
@@ -12,7 +11,3 @@ def selection_sort(arr):
                 min_idx = i
         arr[j], arr[min_idx] = arr[min_idx], arr[j]
     return arr
-
-
-# if __name__ == '__main__':
-#     do stuff
