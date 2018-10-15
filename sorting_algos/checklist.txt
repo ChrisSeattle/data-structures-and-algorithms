@@ -31,8 +31,8 @@
 
 ## mergesort
 
-- [ ] Write a function that accepts an array of unsorted integers,
-- [ ] and returns a sorted array by a recursive mergesort algorithm.
+- [x] Write a function that accepts an array of unsorted integers,
+- [x] and returns a sorted array by a recursive mergesort algorithm.
 
 - [x] Created and working in a branch titled as the challenge name
 - [x] Created a directory named according to the challenge name, import all starter files
@@ -40,7 +40,7 @@
 - [x] Function name labeled according to instructions
 - [x] Prepare Checklist to use with assignment completion
 - [x] Write at least 3 test assertions
-- [ ] Ensure code is passing all tests
+- [x] Ensure code is passing all tests
 - [x] Update challenge Readme file with accurate info.
 - [x] Update main repo Readme file with accurate info.
 

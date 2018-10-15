@@ -128,6 +128,41 @@ class BinaryTree(object):
         _walk(self.root, val, data)
     # end of insert
 
+    def insert_node(self, n):
+        """ Insert an already made node that has a n.val and a n.data at appropriate tree location
+            Val is the location key, data is stored info (if none given, use val)
+            Insert with O(log n)
+        """
+        if not isinstance(n, Node):
+            raise TypeError(f'Not a valid Node type')
+
+        if n.data is None:
+            n.data = n.val
+
+        def _walk(curr, n):
+            """ This recursive helper function will drill down to an insertion point
+                Returns True if we were able to insert, False if we have a duplicate val
+            """
+            if n.val < curr.val:
+                if curr.left is None:
+                    curr.left = n
+                    return True
+                return _walk(curr.left, n)
+            if n.val > curr.val:
+                if curr.right is None:
+                    curr.right = n
+                    return True
+                return _walk(curr.right, n)
+            else:
+                raise ValueError(f'Neither < or > for {n.val}, {curr.val}')
+                # return False
+
+        if self.root is None:
+            self.root = n
+            return True
+        return _walk(self.root, n)
+    # end of insert_node
+
     def get(self, val):
         """ Searches for the val, returns the data
         """
@@ -153,6 +188,39 @@ class BinaryTree(object):
                 # return False
 
         return _walk(self.root, val)
+
+    def delete(self, val):
+        """ Find a node by the val, and remove it from the tree
+        """
+
+        def _walk(curr, val, prev=None):
+            """ This recursive helper function will drill down to find a node location
+                Returns the data value if found, returns False if it is not present
+            """
+            if val == curr.val:
+                if prev is not None and prev.left == curr:
+                    prev.left = None
+                if prev is not None and prev.right == curr:
+                    prev.right = None
+                if curr.left is not None:
+                    self.insert_node(curr.left)
+                if curr.right is not None:
+                    self.insert_node(curr.right)
+                return curr.data
+            if val < curr.val:
+                if curr.left is None:
+                    return False
+                return _walk(curr.left, val, curr)
+            if val > curr.val:
+                if curr.right is None:
+                    return False
+                return _walk(curr.right, val, curr)
+            else:
+                raise ValueError(f'Neither < or > or == for {val}, {curr.val}')
+                # return False
+
+        return _walk(self.root, val)
+
 
     def in_order(self, callable=lambda node: print(node)):
         """ Go left, visit, then go right
@@ -209,6 +277,7 @@ class BinaryTree(object):
             accept Nodes as inputs & outputs to enqueue & dequeue
         """
         q = Queue()
+
         def _walk(q):
             if q.front.left:
                 q.enqueue(q.front.left)
