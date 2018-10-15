@@ -9,10 +9,13 @@ class HashTable:
 
     def __init__(self, size=8192):
         self.table_size = size
-        self.hashtable = []
+        self.hashtable = [None for _ in range(size)]
+
+    def __str__(self):
+        return f'HashTable | Size: {self.table_size}'
 
     def __repr__(self):
-        pass
+        return f'<HashTable | Size: {self.table_size}>'
 
     def _hash_key(self, key):
         """Create a hash from a given key.
@@ -26,19 +29,20 @@ class HashTable:
                 self.alphabet_size, len(key) - i - 1) * ord(c)
         return hash_ % self.table_size
 
-    def set(self, key, value):
+    def set(self, key, value=True):
         """Add a key and value into the hash table.
         args:
             key: the key to store
             value: the value to store
         """
+
         hashkey = self._hash_key(key)
         if self.hashtable[hashkey] is None:
             bt = BinaryTree({key: value})
-            self.hashtable[hashkey] = [bt]
-        else:
+            self.hashtable[hashkey] = bt
+        elif not self.hashtable[hashkey].get(key):
             self.hashtable[hashkey].insert(key, value)
-        return True
+        return True  # if key already present, returned true and left alone
 
     def get(self, key):
         """Retrieve a value from the hash table by key.
@@ -47,11 +51,9 @@ class HashTable:
         returns: the value stored with the key
         """
         hashkey = self._hash_key(key)
-        try:
-            bt = self.hashtable[hashkey]
-            return bt.get(key)
-        except:
-            return False  # No value at that spot means we don't have that key-value
+        if self.hashtable[hashkey] is None:
+            return False
+        return self.hashtable[hashkey].get(key)
 
     def remove(self, key):
         """Retrieve and remove a value from the hash table by key.
@@ -59,4 +61,11 @@ class HashTable:
             key: a string to find the value in the hash table
         returns: the value stored with the key
         """
-        pass
+        hashkey = self._hash_key(key)
+        if self.hashtable[hashkey] is None:
+            return False
+        bt = self.hashtable[hashkey]
+        if bt.root.val == key:
+            self.hashtable[hashkey] = None
+        return bt.delete(key)
+    # end of remove
